@@ -8,7 +8,7 @@ main() {
 
   cat doc/spec.txt | tr -d '\r' | grep -v '^$' | sort > doc/spec-sorted.txt;
 
-  bin/libexec/bmp2gen.php;
+  bin/libexec/bmp2hdr.php;
 
   bin/libexec/gen-template.php;
 

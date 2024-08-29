@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-// 2024-08-29 jj5 - this script was for generating bitmap files from the gen header files, but it's not used anymore.
+// 2024-08-29 jj5 - this script was for generating bitmap files from the header files, but it's not used anymore.
 
 require_once __DIR__ . '/inc/common.php';
 

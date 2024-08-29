@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+// 2024-08-29 jj5 - this script generates a header file that includes all the header files for the bitmaps.
+
 require_once __DIR__ . '/inc/common.php';
 
 function main( $argv ) {
