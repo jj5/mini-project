@@ -342,7 +342,7 @@ void loop() {
 // 2024-08-29 jj5 - functions...
 //
 
-void declare_button( int button_index, int code, const unsigned char* bitmap ) {
+void declare_button( int button_index, int alt_code, const unsigned char* bitmap ) {
 
   if ( button_index < 0 ) {
 
@@ -360,7 +360,7 @@ void declare_button( int button_index, int code, const unsigned char* bitmap ) {
 
   }
 
-  button_alt_code[ button_index ] = code;
+  button_alt_code[ button_index ] = alt_code;
   button_bitmap[ button_index ] = bitmap;
   button_pressed[ button_index ] = false;
   button_age[ button_index ] = now;
@@ -369,8 +369,8 @@ void declare_button( int button_index, int code, const unsigned char* bitmap ) {
   //
   button_light_on[ button_index ] = true;
 
-  // 2024-08-29 jj5 - initialise the screen by turning the light off (this will work because we pretend it is on
-  // above)...
+  // 2024-08-29 jj5 - initialise the button on the screen by turning the light off (this will work because we
+  // pretend it is on above)...
   //
   highlight_off( button_index );
 
@@ -408,23 +408,23 @@ void highlight_off( int button_index ) {
 
 }
 
-void send_alt_code( int code ){
+void send_alt_code( int alt_code ) {
 
-  //Serial.println( code );
+  //Serial.println( alt_code );
 
   Keyboard.press( KEY_LEFT_ALT );
   delay( 1 );
 
-  Keyboard.write( keypad_keys[ ( code / 1000 ) % 10 ] );
+  Keyboard.write( keypad_keys[ ( alt_code / 1000 ) % 10 ] );
   delay( 1 );
 
-  Keyboard.write( keypad_keys[ ( code / 100 ) % 10 ] );
+  Keyboard.write( keypad_keys[ ( alt_code / 100 ) % 10 ] );
   delay( 1 );
 
-  Keyboard.write( keypad_keys[ ( code / 10 ) % 10 ] );
+  Keyboard.write( keypad_keys[ ( alt_code / 10 ) % 10 ] );
   delay( 1 );
 
-  Keyboard.write( keypad_keys[ ( code / 1 ) % 10 ] );
+  Keyboard.write( keypad_keys[ ( alt_code / 1 ) % 10 ] );
   delay( 1 );
 
   Keyboard.releaseAll();
@@ -470,11 +470,11 @@ void warn( const char* msg ) {
 
 }
 
-void log_int( const char* line, int n ) {
+void log_int( const char* format_string, int n ) {
 
   char buffer[ 150 ];
 
-  if ( strlen( line ) > 100 ) {
+  if ( strlen( format_string ) > 100 ) {
 
     warn( "cowardly refusing to format string longer than 100 chars." );
 
@@ -482,7 +482,7 @@ void log_int( const char* line, int n ) {
 
   }
 
-  sprintf( buffer, line, n );
+  sprintf( buffer, format_string, n );
 
   Serial.println( buffer );
 
