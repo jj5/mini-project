@@ -17,21 +17,38 @@
 // 2024-08-29 jj5 - defines...
 //
 
+// 2024-08-29 jj5 - if JJ5 is defined the symbols are the ones Jay Jay uses, otherwise they are the ones from the
+// magazine.
+//
 //#define JJ5
 
-// 2024-08-29 jj5 - we highlight the symbol on the keyboard if the key is pressed at least MIN_LIGHT microseconds
-// and we actually send the keypress if the key is still pressed after at least MIN_PRESS microseconds...
+// 2024-08-29 jj5 - we highlight the symbol on the keyboard if the button is pressed at least MIN_LIGHT microseconds
+// and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds...
 //
 #define MIN_LIGHT 25000
-#define MIN_PRESS 50000
+#define MIN_PRESS 75000
 
+// 2024-08-29 jj5 - foreground colour...
+//
 #define FGC CYAN
+
+// 2024-08-29 jj5 - background colour...
+//
 #define BGC BLACK
+
+// 2024-08-29 jj5 - dimensions...
+//
 #define ROWS 3
 #define COLUMNS 4
+
+// 2024-08-29 jj5 - button dimenions, including padding (the fonts are 64 pixels square, padding is 8 pixels)
+//
 #define BUTTON_WIDTH 80
 #define BUTTON_HEIGHT 80
-#define BUTTON_COUNT 12
+
+// 2024-08-29 jj5 - total number of buttons...
+//
+#define BUTTON_COUNT ( ROWS * COLUMNS )
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,21 +68,27 @@ uint8_t keypad_keys[] = {
   KEY_KP_9,
 };
 
-int codes[ BUTTON_COUNT ];
+// 2024-08-29 jj5 - these are the four-digit alt-key codes for each button...
+//
+int button_alt_code[ BUTTON_COUNT ];
 
-const unsigned char* bitmaps[ BUTTON_COUNT ];
+// 2024-08-29 jj5 - these are the 64x64 pixel symbol fonts...
+//
+const unsigned char* button_bitmap[ BUTTON_COUNT ];
 
-bool isPressed[ BUTTON_COUNT ];
+// 2024-08-29 jj5 - these indicate if a button is pressed or not...
+//
+bool button_pressed[ BUTTON_COUNT ];
 
 // 2024-08-29 jj5 - this tracks if a symbol on the keyboard is highlighted or not, we use this so we only need to write
 // to the display if something changes...
 //
-bool isLightOn[ BUTTON_COUNT ];
+bool button_light_on[ BUTTON_COUNT ];
 
 // 2024-08-29 jj5 - this records the age of a keydown, if they get old enough (far back in time enough) we send the
 // keypress, otherwise we wait...
 //
-unsigned long age[ BUTTON_COUNT ];
+unsigned long button_age[ BUTTON_COUNT ];
 
 // 2024-08-29 jj5 - this is the current time (in microseconds)...
 //
@@ -77,18 +100,33 @@ unsigned long now;
 //
 
 void setup() {
-  int button_index;
+
+  // 2024-08-29 jj5 - initialise the timer...
+  //
   now = micros();
+
+  // 2024-08-29 jj5 - setup the Serial debug line...
+  //
   Serial.begin( 115200 );
+
+  // 2024-08-29 jj5 - setup the USB keyboard...
+  //
   Keyboard.begin();
+
+  // 2024-08-29 jj5 - setup the screen...
+  //
   XC4630_init();
   XC4630_rotate( 2 );
   // 2024-08-29 jj5 - blank the screen...
   XC4630_clear( BGC );
+
   // 2024-08-29 jj5 - initialise 12 buttons...
-  button_index = 0;
+  //
+  int button_index = 0;
 
   #ifdef JJ5
+
+  // 2024-08-29 jj5 - these are the symbols Jay Jay uses...
 
   //declare_button( button_index++,  169, u0169_Copyright );
   //declare_button( button_index++,  174, u0174_Registered_Trade_Mark );
@@ -128,6 +166,8 @@ void setup() {
 
   #endif
 
+  // 2024-08-29 jj5 - these are other buttons that we generated bitmaps for and tested...
+  //
   /*
   declare_button( button_index++,  188, u0188_frac14 );
   declare_button( button_index++, 8531, u8531_frac13 );
@@ -141,6 +181,7 @@ void setup() {
   declare_button( button_index++,  174, u0174_Registered_Trade_Mark );
   declare_button( button_index++,  153, u0153_Trade_Mark );
   declare_button( button_index++, 8481, u8481_Telephone );
+  */
   /*
   declare_button( button_index++,  176, u0176_Degree );
   declare_button( button_index++, 8451, u8451_Degree_Celsius );
@@ -168,6 +209,7 @@ void setup() {
   declare_button( button_index++,  913, u0913_Alpha_Uppercase );
   declare_button( button_index++,  945, u0945_Alpha_Lowercase );
   declare_button( button_index++,  914, u0914_Beta_Uppercase );
+  */
   /*
   declare_button( button_index++,  946, u0946_Beta_Lowercase );
   declare_button( button_index++,  915, u0915_Gamma_Uppercase );
@@ -181,6 +223,7 @@ void setup() {
   declare_button( button_index++,  919, u0919_Eta_Uppercase );
   declare_button( button_index++,  951, u0951_Eta_Lowercase );
   declare_button( button_index++,  920, u0920_Theta_Uppercase );
+  */
   /*
   declare_button( button_index++,  952, u0952_Theta_Lowercase );
   declare_button( button_index++,  921, u0921_Iota_Uppercase );
@@ -194,6 +237,7 @@ void setup() {
   declare_button( button_index++,  925, u0925_Nu_Uppercase );
   declare_button( button_index++,  957, u0957_Nu_Lowercase );
   declare_button( button_index++,  926, u0926_Xi_Uppercase );
+  */
   /*
   declare_button( button_index++,  958, u0958_Xi_Lowercase );
   declare_button( button_index++,  927, u0927_Omicron_Uppercase );
@@ -207,6 +251,7 @@ void setup() {
   declare_button( button_index++,  932, u0932_Tau_Uppercase );
   declare_button( button_index++,  964, u0964_Tau_Lowercase );
   declare_button( button_index++,  933, u0933_Upsilon_Uppercase );
+  */
   /*
   declare_button( button_index++,  965, u0965_Upsilon_Lowercase );
   declare_button( button_index++,  934, u0934_Phi_Uppercase );
@@ -220,47 +265,74 @@ void setup() {
   declare_button( button_index++, 1488, u1488_Alef );
   declare_button( button_index++, 1488, u1488_Alef );
   declare_button( button_index++, 1488, u1488_Alef );
-  /*
   */
 
   if ( button_index != BUTTON_COUNT ) {
+
     warn( "button_index != BUTTON_COUNT" );
+
   }
+
   log( "Initialised." );
+
 }
 
 void loop() {
-  int x, y;
-  int button_index;
-  bool pressed;
-  unsigned long then, duration;
+
+  // 2024-08-29 jj5 - update the timer...
+  //
   now = micros();
-  x = XC4630_touchx();
-  y = XC4630_touchy();
-  for ( button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
-    pressed = getPressed( button_index, x, y );
-    then = age[ button_index ];
-    duration = now - then;
-    if ( isPressed[ button_index ] && ! pressed ) {
+
+  // 2024-08-29 jj5 - get the touch co-ordinates...
+  //
+  int x = XC4630_touchx();
+  int y = XC4630_touchy();
+
+  // 2024-08-29 jj5 - for each button...
+  //
+  for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
+
+    bool pressed = getPressed( button_index, x, y );
+    unsigned long age = now - button_age[ button_index ];
+
+    if ( button_pressed[ button_index ] && ! pressed ) {
+
       // 2024-08-29 jj5 - the button was pressed, but now it's not, so that's a keyup event
-      if ( duration > MIN_PRESS ) {
-        // 2024-08-29 jj5 - the key was down at least MIN_PRESS microseconds, so unhighlight the key and send the
-        // unicode key combination, this keypress event is finished.
+
+      if ( age > MIN_PRESS ) {
+
+        // 2024-08-29 jj5 - the button was down at least MIN_PRESS microseconds, so unhighlight the key and send the
+        // alt-key combination, this keypress event is finished.
+
         lo_light( button_index );
-        sendUnicode( codes[ button_index ] );
+
+        send_alt_code( button_alt_code[ button_index ] );
+
         log_int( "keyup sent for button '%d'.", button_index );
+
       }
       else {
+
+        // 2024-08-29 jj5 - the button wasn't pressed for long enough so we will ignore it.
+
         log_int( "keyup timeout for button '%d'.", button_index );
+
       }
     }
-    isPressed[ button_index ] = pressed;
+
+    button_pressed[ button_index ] = pressed;
+
     if ( ! pressed ) {
-      age[ button_index ] = now;
+
+      button_age[ button_index ] = now;
+
       lo_light( button_index );
+
     }
-    else if ( duration > MIN_LIGHT ) {
+    else if ( age > MIN_LIGHT ) {
+
       hi_light( button_index );
+
     }
   }
 }
@@ -288,67 +360,107 @@ void declare_button( int button_index, int code, const unsigned char* bitmap ) {
 
   }
 
-  codes[ button_index ] = code;
-  bitmaps[ button_index ] = bitmap;
-  isPressed[ button_index ] = false;
-  age[ button_index ] = now;
+  button_alt_code[ button_index ] = code;
+  button_bitmap[ button_index ] = bitmap;
+  button_pressed[ button_index ] = false;
+  button_age[ button_index ] = now;
+
   // 2024-08-29 jj5 - pretend the light is on...
-  isLightOn[ button_index ] = true;
-  // 2024-08-29 jj5 - turn the light off (this will work because we pretend it is on above)...
+  //
+  button_light_on[ button_index ] = true;
+
+  // 2024-08-29 jj5 - initialise the screen by turning the light off (this will work because we pretend it is on
+  // above)...
+  //
   lo_light( button_index );
+
 }
 
 void hi_light( int button_index ) {
-  if ( isLightOn[ button_index ] ) { return; }
-  isLightOn[ button_index ] = true;
-  XC4630_mcimage( getX( button_index ), getY( button_index ), bitmaps[ button_index ], BGC, FGC );
+
+  // 2024-08-29 jj5 - if the light is already on just return...
+  //
+  if ( button_light_on[ button_index ] ) { return; }
+
+  // 2024-08-29 jj5 - record that the light is on...
+  //
+  button_light_on[ button_index ] = true;
+
+  // 2024-08-29 jj5 - invert the foreground and background colours to signal a touch...
+  //
+  XC4630_mcimage( getX( button_index ), getY( button_index ), button_bitmap[ button_index ], BGC, FGC );
+
 }
 
 void lo_light( int button_index ) {
-  if ( ! isLightOn[ button_index ] ) { return; }
-  isLightOn[ button_index ] = false;
-  XC4630_mcimage( getX( button_index ), getY( button_index ), bitmaps[ button_index ], FGC, BGC );
+
+  // 2024-08-29 jj5 - if the light is already off just return...
+  //
+  if ( ! button_light_on[ button_index ] ) { return; }
+
+  // 2024-08-29 jj5 - record that the light is off...
+  //
+  button_light_on[ button_index ] = false;
+
+  // 2024-08-29 jj5 - reset the foreground and background colours to signal release...
+  //
+  XC4630_mcimage( getX( button_index ), getY( button_index ), button_bitmap[ button_index ], FGC, BGC );
+
 }
 
-void sendUnicode(int n){  //eg ALT-0163 requires n=163 = 0xA3
-  //Serial.println( n );
-  Keyboard.press(KEY_LEFT_ALT);
-  delay(1);
-  Keyboard.write(keypad_keys[(n/1000)%10]);
-  delay(1);
-  Keyboard.write(keypad_keys[(n/100)%10]);
-  delay(1);
-  Keyboard.write(keypad_keys[(n/10)%10]);
-  delay(1);
-  Keyboard.write(keypad_keys[(n/1)%10]);
-  delay(1);
+void send_alt_code( int code ){
+
+  //Serial.println( code );
+
+  Keyboard.press( KEY_LEFT_ALT );
+  delay( 1 );
+
+  Keyboard.write( keypad_keys[ ( code / 1000 ) % 10 ] );
+  delay( 1 );
+
+  Keyboard.write( keypad_keys[ ( code / 100 ) % 10 ] );
+  delay( 1 );
+
+  Keyboard.write( keypad_keys[ ( code / 10 ) % 10 ] );
+  delay( 1 );
+
+  Keyboard.write( keypad_keys[ ( code / 1 ) % 10 ] );
+  delay( 1 );
+
   Keyboard.releaseAll();
+
 }
 
-int getX(int i){
-  int w;
-  w=XC4630_imagewidth(bitmaps[i]);
-  return (i%COLUMNS)*BUTTON_WIDTH+(BUTTON_WIDTH-w)/2;
+int getX( int button_index ) {
+
+  int width = XC4630_imagewidth( button_bitmap[ button_index ] );
+
+  return ( button_index % COLUMNS ) * BUTTON_WIDTH + ( BUTTON_WIDTH - width ) / 2;
+
 }
 
-int getY(int i){
-  int h;
-  h=XC4630_imageheight(bitmaps[i]);
-  return (i/COLUMNS)*BUTTON_HEIGHT+(BUTTON_HEIGHT-h)/2;
+int getY( int button_index ) {
+
+  int height = XC4630_imageheight( button_bitmap[ button_index ] );
+
+  return ( button_index / COLUMNS ) * BUTTON_HEIGHT + ( BUTTON_HEIGHT - height ) / 2;
+
 }
 
-bool getPressed(int i,int tx, int ty){
-  int w,h;
-  int x,y;
-  w=XC4630_imagewidth(bitmaps[i]);
-  h=XC4630_imageheight(bitmaps[i]);
-  x=getX(i);
-  y=getY(i);
-  if(tx<x){return false;}
-  if(tx>x+w){return false;}
-  if(ty<y){return false;}
-  if(ty>y+h){return false;}
+bool getPressed( int button_index, int tx, int ty ) {
+
+  int w = XC4630_imagewidth( button_bitmap[ button_index ] );
+  int h = XC4630_imageheight( button_bitmap[ button_index ] );
+  int x = getX( button_index );
+  int y = getY( button_index );
+
+  if ( tx < x     ) { return false; }
+  if ( tx > x + w ) { return false; }
+  if ( ty < y     ) { return false; }
+  if ( ty > y + h ) { return false; }
+
   return true;
+
 }
 
 void warn( const char* msg ) {
