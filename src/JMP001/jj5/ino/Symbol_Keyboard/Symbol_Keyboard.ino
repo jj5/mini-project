@@ -4,7 +4,12 @@
 // 2024-08-29 jj5 - includes...
 //
 
+// 2024-08-30 jj5 - the XC4630d library is our interface to our touch screen...
+//
 #include "XC4630d.c"
+
+// 2024-08-30 jj5 - the Arduino Keyboard library allows us to emulate a USB keyboard...
+//
 #include "Keyboard.h"
 
 // 2024-08-29 jj5 - if you want only the symbols you define in your binary specify and include bitmaps.h
