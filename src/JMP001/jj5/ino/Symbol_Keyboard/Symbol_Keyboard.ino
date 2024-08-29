@@ -22,7 +22,7 @@
 //
 //#define JJ5
 
-// 2024-08-29 jj5 - we highlight the symbol on the keyboard if the button is pressed at least MIN_LIGHT microseconds
+// 2024-08-29 jj5 - we highlight the button on the keyboard if the button is pressed at least MIN_LIGHT microseconds
 // and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds...
 //
 #define MIN_LIGHT 25000
@@ -80,8 +80,8 @@ const unsigned char* button_bitmap[ BUTTON_COUNT ];
 //
 bool button_pressed[ BUTTON_COUNT ];
 
-// 2024-08-29 jj5 - this tracks if a symbol on the keyboard is highlighted or not, we use this so we only need to write
-// to the display if something changes...
+// 2024-08-29 jj5 - this tracks if a button on the keyboard is highlighted or not, we use this so we only need to
+// write to the display if something changes...
 //
 bool button_light_on[ BUTTON_COUNT ];
 
