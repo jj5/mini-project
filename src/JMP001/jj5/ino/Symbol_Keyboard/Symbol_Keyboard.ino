@@ -376,22 +376,6 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
 
 }
 
-void highlight_on( int button_index ) {
-
-  // 2024-08-29 jj5 - if the light is already on just return...
-  //
-  if ( button_light_on[ button_index ] ) { return; }
-
-  // 2024-08-29 jj5 - record that the light is on...
-  //
-  button_light_on[ button_index ] = true;
-
-  // 2024-08-29 jj5 - invert the foreground and background colours to signal a touch...
-  //
-  XC4630_mcimage( get_x( button_index ), get_y( button_index ), button_bitmap[ button_index ], BGC, FGC );
-
-}
-
 void highlight_off( int button_index ) {
 
   // 2024-08-29 jj5 - if the light is already off just return...
@@ -405,6 +389,22 @@ void highlight_off( int button_index ) {
   // 2024-08-29 jj5 - reset the foreground and background colours to signal release...
   //
   XC4630_mcimage( get_x( button_index ), get_y( button_index ), button_bitmap[ button_index ], FGC, BGC );
+
+}
+
+void highlight_on( int button_index ) {
+
+  // 2024-08-29 jj5 - if the light is already on just return...
+  //
+  if ( button_light_on[ button_index ] ) { return; }
+
+  // 2024-08-29 jj5 - record that the light is on...
+  //
+  button_light_on[ button_index ] = true;
+
+  // 2024-08-29 jj5 - invert the foreground and background colours to signal a touch...
+  //
+  XC4630_mcimage( get_x( button_index ), get_y( button_index ), button_bitmap[ button_index ], BGC, FGC );
 
 }
 
