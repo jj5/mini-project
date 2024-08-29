@@ -285,14 +285,14 @@ void loop() {
 
   // 2024-08-29 jj5 - get the touch co-ordinates...
   //
-  int x = XC4630_touchx();
-  int y = XC4630_touchy();
+  int touch_x = XC4630_touchx();
+  int touch_y = XC4630_touchy();
 
   // 2024-08-29 jj5 - for each button...
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
 
-    bool pressed = get_pressed( button_index, x, y );
+    bool pressed = get_pressed( button_index, touch_x, touch_y );
     unsigned long age = now - button_age[ button_index ];
 
     if ( button_pressed[ button_index ] && ! pressed ) {
@@ -447,17 +447,17 @@ int get_y( int button_index ) {
 
 }
 
-bool get_pressed( int button_index, int tx, int ty ) {
+bool get_pressed( int button_index, int touch_x, int touch_y ) {
 
   int w = XC4630_imagewidth( button_bitmap[ button_index ] );
   int h = XC4630_imageheight( button_bitmap[ button_index ] );
   int x = get_x( button_index );
   int y = get_y( button_index );
 
-  if ( tx < x     ) { return false; }
-  if ( tx > x + w ) { return false; }
-  if ( ty < y     ) { return false; }
-  if ( ty > y + h ) { return false; }
+  if ( touch_x < x     ) { return false; }
+  if ( touch_x > x + w ) { return false; }
+  if ( touch_y < y     ) { return false; }
+  if ( touch_y > y + h ) { return false; }
 
   return true;
 
