@@ -442,17 +442,13 @@ void send_alt_code( int alt_code ) {
 
 int calc_x( int button_index, const unsigned char* button_bitmap ) {
 
-  int width = XC4630_imagewidth( button_bitmap );
-
-  return ( button_index % COLUMNS ) * BUTTON_WIDTH + ( BUTTON_WIDTH - width ) / 2;
+  return ( button_index % COLUMNS ) * BUTTON_WIDTH + ( BUTTON_WIDTH - calc_w( button_bitmap ) ) / 2;
 
 }
 
 int calc_y( int button_index, const unsigned char* button_bitmap ) {
 
-  int height = XC4630_imageheight( button_bitmap );
-
-  return ( button_index / COLUMNS ) * BUTTON_HEIGHT + ( BUTTON_HEIGHT - height ) / 2;
+  return ( button_index / COLUMNS ) * BUTTON_HEIGHT + ( BUTTON_HEIGHT - calc_h( button_bitmap ) ) / 2;
 
 }
 
