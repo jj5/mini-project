@@ -292,7 +292,7 @@ void loop() {
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
 
-    bool pressed = getPressed( button_index, x, y );
+    bool pressed = get_pressed( button_index, x, y );
     unsigned long age = now - button_age[ button_index ];
 
     if ( button_pressed[ button_index ] && ! pressed ) {
@@ -388,7 +388,7 @@ void highlight_on( int button_index ) {
 
   // 2024-08-29 jj5 - invert the foreground and background colours to signal a touch...
   //
-  XC4630_mcimage( getX( button_index ), getY( button_index ), button_bitmap[ button_index ], BGC, FGC );
+  XC4630_mcimage( get_x( button_index ), get_y( button_index ), button_bitmap[ button_index ], BGC, FGC );
 
 }
 
@@ -404,7 +404,7 @@ void highlight_off( int button_index ) {
 
   // 2024-08-29 jj5 - reset the foreground and background colours to signal release...
   //
-  XC4630_mcimage( getX( button_index ), getY( button_index ), button_bitmap[ button_index ], FGC, BGC );
+  XC4630_mcimage( get_x( button_index ), get_y( button_index ), button_bitmap[ button_index ], FGC, BGC );
 
 }
 
@@ -431,7 +431,7 @@ void send_alt_code( int alt_code ) {
 
 }
 
-int getX( int button_index ) {
+int get_x( int button_index ) {
 
   int width = XC4630_imagewidth( button_bitmap[ button_index ] );
 
@@ -439,7 +439,7 @@ int getX( int button_index ) {
 
 }
 
-int getY( int button_index ) {
+int get_y( int button_index ) {
 
   int height = XC4630_imageheight( button_bitmap[ button_index ] );
 
@@ -447,12 +447,12 @@ int getY( int button_index ) {
 
 }
 
-bool getPressed( int button_index, int tx, int ty ) {
+bool get_pressed( int button_index, int tx, int ty ) {
 
   int w = XC4630_imagewidth( button_bitmap[ button_index ] );
   int h = XC4630_imageheight( button_bitmap[ button_index ] );
-  int x = getX( button_index );
-  int y = getY( button_index );
+  int x = get_x( button_index );
+  int y = get_y( button_index );
 
   if ( tx < x     ) { return false; }
   if ( tx > x + w ) { return false; }
