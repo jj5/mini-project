@@ -36,7 +36,7 @@
 //
 #define BGC BLACK
 
-// 2024-08-29 jj5 - dimensions...
+// 2024-08-29 jj5 - screen dimensions...
 //
 #define ROWS 3
 #define COLUMNS 4
@@ -81,7 +81,7 @@ const unsigned char* button_bitmap[ BUTTON_COUNT ];
 int button_x[ BUTTON_COUNT ];
 int button_y[ BUTTON_COUNT ];
 
-// 2024-08-30 jj5 - button dimensions...
+// 2024-08-30 jj5 - button dimensions (width and height)...
 //
 int button_w[ BUTTON_COUNT ];
 int button_h[ BUTTON_COUNT ];
