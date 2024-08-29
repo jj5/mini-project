@@ -149,7 +149,7 @@ void setup() {
 
   #else
 
-  // 2024-08-29 jj5 - these are the buttons that shipped with the original article
+  // 2024-08-29 jj5 - these are the buttons that shipped with the original magazine article
 
   declare_button( button_index++,  176, u0176_Degree );
   declare_button( button_index++,  188, u0188_frac14 );
