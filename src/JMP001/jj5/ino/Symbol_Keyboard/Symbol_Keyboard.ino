@@ -62,15 +62,15 @@
 
 struct button {
 
-  // 2024-08-29 jj5 - these are the four-digit alt-key codes for each button...
+  // 2024-08-29 jj5 - this is the four-digit alt-key code for this button...
   //
   int alt_code;
 
-  // 2024-08-29 jj5 - these are the 64x64 pixel symbol fonts...
+  // 2024-08-29 jj5 - this is the 64x64 pixel symbol font bitmap for this button...
   //
   const unsigned char* bitmap;
 
-  // 2024-08-30 jj5 - button locations...
+  // 2024-08-30 jj5 - button location...
   //
   int x;
   int y;
@@ -83,7 +83,7 @@ struct button {
   //
   int height;
 
-  // 2024-08-29 jj5 - these indicate if a button is pressed or not...
+  // 2024-08-29 jj5 - indicate if button is pressed or not...
   //
   bool pressed;
 
