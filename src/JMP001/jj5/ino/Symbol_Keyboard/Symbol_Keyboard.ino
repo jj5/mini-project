@@ -315,7 +315,7 @@ void loop() {
 
         // 2024-08-29 jj5 - the button wasn't pressed for long enough so we will ignore it.
 
-        log_int( "keyup timeout for button '%d'.", button_index );
+        log_int( "keyup aborted for button '%d'.", button_index );
 
       }
     }
