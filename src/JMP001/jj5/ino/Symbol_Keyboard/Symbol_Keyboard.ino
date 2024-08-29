@@ -81,6 +81,11 @@ const unsigned char* button_bitmap[ BUTTON_COUNT ];
 int button_x[ BUTTON_COUNT ];
 int button_y[ BUTTON_COUNT ];
 
+// 2024-08-30 jj5 - button dimensions...
+//
+int button_w[ BUTTON_COUNT ];
+int button_h[ BUTTON_COUNT ];
+
 // 2024-08-29 jj5 - these indicate if a button is pressed or not...
 //
 bool button_pressed[ BUTTON_COUNT ];
@@ -297,7 +302,7 @@ void loop() {
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
 
-    bool pressed = get_pressed( button_index, touch_x, touch_y );
+    bool pressed = is_pressed( button_index, touch_x, touch_y );
     unsigned long age = now - button_age[ button_index ];
 
     if ( button_pressed[ button_index ] && ! pressed ) {
@@ -369,6 +374,8 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button_bitmap[ button_index ] = bitmap;
   button_x[ button_index ] = calc_x( button_index, bitmap );
   button_y[ button_index ] = calc_y( button_index, bitmap );
+  button_w[ button_index ] = calc_w( bitmap );
+  button_h[ button_index ] = calc_h( bitmap );
   button_pressed[ button_index ] = false;
   button_age[ button_index ] = now;
 
@@ -454,17 +461,24 @@ int calc_y( int button_index, const unsigned char* button_bitmap ) {
 
 }
 
-bool get_pressed( int button_index, int touch_x, int touch_y ) {
+int calc_w( const unsigned char* button_bitmap ) {
 
-  int w = XC4630_imagewidth( button_bitmap[ button_index ] );
-  int h = XC4630_imageheight( button_bitmap[ button_index ] );
-  int x = button_x[ button_index ];
-  int y = button_y[ button_index ];
+  return XC4630_imagewidth( button_bitmap );
 
-  if ( touch_x < x     ) { return false; }
-  if ( touch_x > x + w ) { return false; }
-  if ( touch_y < y     ) { return false; }
-  if ( touch_y > y + h ) { return false; }
+}
+
+int calc_h( const unsigned char* button_bitmap ) {
+
+  return XC4630_imageheight( button_bitmap );
+
+}
+
+bool is_pressed( int button_index, int touch_x, int touch_y ) {
+
+  if ( touch_x < button_x[ button_index ]                             ) { return false; }
+  if ( touch_x > button_x[ button_index ] + button_w[ button_index ]  ) { return false; }
+  if ( touch_y < button_y[ button_index ]                             ) { return false; }
+  if ( touch_y > button_y[ button_index ] + button_h[ button_index ]  ) { return false; }
 
   return true;
 
