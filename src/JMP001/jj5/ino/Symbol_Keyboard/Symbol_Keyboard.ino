@@ -117,6 +117,8 @@ uint8_t keypad_keys[] = {
   KEY_KP_9,
 };
 
+// 2024-08-30 jj5 - this is our array of button data...
+//
 struct button button[ BUTTON_COUNT ];
 
 // 2024-08-29 jj5 - this is the current time (in microseconds)...
