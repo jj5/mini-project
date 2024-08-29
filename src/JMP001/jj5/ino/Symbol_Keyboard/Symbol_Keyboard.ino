@@ -57,6 +57,50 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 2024-08-30 jj5 - structs...
+//
+
+struct button {
+
+  // 2024-08-29 jj5 - these are the four-digit alt-key codes for each button...
+  //
+  int alt_code;
+
+  // 2024-08-29 jj5 - these are the 64x64 pixel symbol fonts...
+  //
+  const unsigned char* bitmap;
+
+  // 2024-08-30 jj5 - button locations...
+  //
+  int x;
+  int y;
+
+  // 2024-08-30 jj5 - button dimension (width)...
+  //
+  int width;
+
+  // 2024-08-30 jj5 - button dimension (height)...
+  //
+  int height;
+
+  // 2024-08-29 jj5 - these indicate if a button is pressed or not...
+  //
+  bool pressed;
+
+  // 2024-08-29 jj5 - this tracks if a button on the keyboard is highlighted or not, we use this so we only need to
+  // write to the display if something changes...
+  //
+  bool light_on;
+
+  // 2024-08-29 jj5 - this records the age of a keydown, if they get old enough (far back in time enough) we send the
+  // keypress, otherwise we wait...
+  //
+  unsigned long age;
+
+};
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2024-08-29 jj5 - globals...
 //
 
@@ -73,37 +117,7 @@ uint8_t keypad_keys[] = {
   KEY_KP_9,
 };
 
-// 2024-08-29 jj5 - these are the four-digit alt-key codes for each button...
-//
-int button_alt_code[ BUTTON_COUNT ];
-
-// 2024-08-29 jj5 - these are the 64x64 pixel symbol fonts...
-//
-const unsigned char* button_bitmap[ BUTTON_COUNT ];
-
-// 2024-08-30 jj5 - button locations...
-//
-int button_x[ BUTTON_COUNT ];
-int button_y[ BUTTON_COUNT ];
-
-// 2024-08-30 jj5 - button dimensions (width and height)...
-//
-int button_w[ BUTTON_COUNT ];
-int button_h[ BUTTON_COUNT ];
-
-// 2024-08-29 jj5 - these indicate if a button is pressed or not...
-//
-bool button_pressed[ BUTTON_COUNT ];
-
-// 2024-08-29 jj5 - this tracks if a button on the keyboard is highlighted or not, we use this so we only need to
-// write to the display if something changes...
-//
-bool button_light_on[ BUTTON_COUNT ];
-
-// 2024-08-29 jj5 - this records the age of a keydown, if they get old enough (far back in time enough) we send the
-// keypress, otherwise we wait...
-//
-unsigned long button_age[ BUTTON_COUNT ];
+struct button button[ BUTTON_COUNT ];
 
 // 2024-08-29 jj5 - this is the current time (in microseconds)...
 //
@@ -305,9 +319,9 @@ void loop() {
     // 2024-08-30 jj5 - get the details for this button...
     //
     bool pressed = is_pressed( button_index );
-    unsigned long age = now - button_age[ button_index ];
+    unsigned long age = now - button[ button_index ].age;
 
-    if ( button_pressed[ button_index ] && ! pressed ) {
+    if ( button[ button_index ].pressed && ! pressed ) {
 
       // 2024-08-29 jj5 - the button was pressed, but now it's not, so that's a keyup event
 
@@ -318,7 +332,7 @@ void loop() {
 
         highlight_off( button_index );
 
-        send_alt_code( button_alt_code[ button_index ] );
+        send_alt_code( button[ button_index ].alt_code );
 
         log_int( "keyup sent for button '%d'.", button_index );
 
@@ -332,13 +346,13 @@ void loop() {
       }
     }
 
-    button_pressed[ button_index ] = pressed;
+    button[ button_index ].pressed = pressed;
 
     if ( ! pressed ) {
 
       // 2024-08-30 jj5 - the button is not pressed so update its age and make sure it's not highlighted.
 
-      button_age[ button_index ] = now;
+      button[ button_index ].age = now;
 
       highlight_off( button_index );
 
@@ -376,18 +390,18 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
 
   }
 
-  button_alt_code[ button_index ] = alt_code;
-  button_bitmap[ button_index ] = bitmap;
-  button_x[ button_index ] = calc_x( button_index, bitmap );
-  button_y[ button_index ] = calc_y( button_index, bitmap );
-  button_w[ button_index ] = calc_w( bitmap );
-  button_h[ button_index ] = calc_h( bitmap );
-  button_pressed[ button_index ] = false;
-  button_age[ button_index ] = now;
+  button[ button_index ].alt_code = alt_code;
+  button[ button_index ].bitmap   = bitmap;
+  button[ button_index ].x        = calc_x( button_index, bitmap );
+  button[ button_index ].y        = calc_y( button_index, bitmap );
+  button[ button_index ].width    = calc_w( bitmap );
+  button[ button_index ].height   = calc_h( bitmap );
+  button[ button_index ].pressed  = false;
+  button[ button_index ].age      = now;
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
-  button_light_on[ button_index ] = true;
+  button[ button_index ].light_on = true;
 
   // 2024-08-29 jj5 - initialise the button on the screen by turning the light off (this will work because we
   // pretend it is on above)...
@@ -400,15 +414,15 @@ void highlight_off( int button_index ) {
 
   // 2024-08-29 jj5 - if the light is already off just return...
   //
-  if ( ! button_light_on[ button_index ] ) { return; }
+  if ( ! button[ button_index ].light_on ) { return; }
 
   // 2024-08-29 jj5 - record that the light is off...
   //
-  button_light_on[ button_index ] = false;
+  button[ button_index ].light_on = false;
 
   // 2024-08-29 jj5 - reset the foreground and background colours to signal release...
   //
-  XC4630_mcimage( button_x[ button_index ], button_y[ button_index ], button_bitmap[ button_index ], FGC, BGC );
+  XC4630_mcimage( button[ button_index ].x, button[ button_index ].y, button[ button_index ].bitmap, FGC, BGC );
 
 }
 
@@ -416,15 +430,15 @@ void highlight_on( int button_index ) {
 
   // 2024-08-29 jj5 - if the light is already on just return...
   //
-  if ( button_light_on[ button_index ] ) { return; }
+  if ( button[ button_index ].light_on ) { return; }
 
   // 2024-08-29 jj5 - record that the light is on...
   //
-  button_light_on[ button_index ] = true;
+  button[ button_index ].light_on = true;
 
   // 2024-08-29 jj5 - invert the foreground and background colours to signal a touch...
   //
-  XC4630_mcimage( button_x[ button_index ], button_y[ button_index ], button_bitmap[ button_index ], BGC, FGC );
+  XC4630_mcimage( button[ button_index ].x, button[ button_index ].y, button[ button_index ].bitmap, BGC, FGC );
 
 }
 
@@ -479,13 +493,13 @@ bool is_pressed( int button_index ) {
 
   int touch_x = XC4630_touchx();
 
-  if ( touch_x < button_x[ button_index ]                             ) { return false; }
-  if ( touch_x > button_x[ button_index ] + button_w[ button_index ]  ) { return false; }
+  if ( touch_x < button[ button_index ].x                                 ) { return false; }
+  if ( touch_x > button[ button_index ].x + button[ button_index ].width  ) { return false; }
 
   int touch_y = XC4630_touchy();
 
-  if ( touch_y < button_y[ button_index ]                             ) { return false; }
-  if ( touch_y > button_y[ button_index ] + button_h[ button_index ]  ) { return false; }
+  if ( touch_y < button[ button_index ].y                                 ) { return false; }
+  if ( touch_y > button[ button_index ].y + button[ button_index ].height ) { return false; }
 
   return true;
 
