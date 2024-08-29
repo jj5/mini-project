@@ -472,8 +472,8 @@ bool is_pressed( int button_index ) {
   int touch_y = XC4630_touchy();
 
   if ( touch_x < button_x[ button_index ]                             ) { return false; }
-  if ( touch_x > button_x[ button_index ] + button_w[ button_index ]  ) { return false; }
   if ( touch_y < button_y[ button_index ]                             ) { return false; }
+  if ( touch_x > button_x[ button_index ] + button_w[ button_index ]  ) { return false; }
   if ( touch_y > button_y[ button_index ] + button_h[ button_index ]  ) { return false; }
 
   return true;
