@@ -302,6 +302,8 @@ void loop() {
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
 
+    // 2024-08-30 jj5 - get the details for this button...
+    //
     bool pressed = is_pressed( button_index );
     unsigned long age = now - button_age[ button_index ];
 
@@ -333,6 +335,8 @@ void loop() {
     button_pressed[ button_index ] = pressed;
 
     if ( ! pressed ) {
+
+      // 2024-08-30 jj5 - the button is not pressed so update its age and make sure it's not highlighted.
 
       button_age[ button_index ] = now;
 
