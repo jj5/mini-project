@@ -120,6 +120,13 @@ void setup() {
   //
   now = micros();
 
+  // 2024-08-29 jj5 - setup the screen...
+  //
+  XC4630_init();
+  XC4630_rotate( 2 );
+  // 2024-08-29 jj5 - blank the screen...
+  XC4630_clear( BGC );
+
   // 2024-08-29 jj5 - setup the Serial debug line...
   //
   Serial.begin( 115200 );
@@ -127,13 +134,6 @@ void setup() {
   // 2024-08-29 jj5 - setup the USB keyboard...
   //
   Keyboard.begin();
-
-  // 2024-08-29 jj5 - setup the screen...
-  //
-  XC4630_init();
-  XC4630_rotate( 2 );
-  // 2024-08-29 jj5 - blank the screen...
-  XC4630_clear( BGC );
 
   // 2024-08-29 jj5 - initialise 12 buttons...
   //
