@@ -466,14 +466,14 @@ int calc_h( const unsigned char* button_bitmap ) {
 
 bool is_pressed( int button_index ) {
 
-  // 2024-08-29 jj5 - get the touch co-ordinates...
-  //
   int touch_x = XC4630_touchx();
-  int touch_y = XC4630_touchy();
 
   if ( touch_x < button_x[ button_index ]                             ) { return false; }
-  if ( touch_y < button_y[ button_index ]                             ) { return false; }
   if ( touch_x > button_x[ button_index ] + button_w[ button_index ]  ) { return false; }
+
+  int touch_y = XC4630_touchy();
+
+  if ( touch_y < button_y[ button_index ]                             ) { return false; }
   if ( touch_y > button_y[ button_index ] + button_h[ button_index ]  ) { return false; }
 
   return true;
