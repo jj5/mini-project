@@ -304,7 +304,7 @@ void loop() {
         // 2024-08-29 jj5 - the button was down at least MIN_PRESS microseconds, so unhighlight the key and send the
         // alt-key combination, this keypress event is finished.
 
-        lo_light( button_index );
+        highlight_off( button_index );
 
         send_alt_code( button_alt_code[ button_index ] );
 
@@ -326,12 +326,12 @@ void loop() {
 
       button_age[ button_index ] = now;
 
-      lo_light( button_index );
+      highlight_off( button_index );
 
     }
     else if ( age > MIN_LIGHT ) {
 
-      hi_light( button_index );
+      highlight_on( button_index );
 
     }
   }
@@ -372,11 +372,11 @@ void declare_button( int button_index, int code, const unsigned char* bitmap ) {
   // 2024-08-29 jj5 - initialise the screen by turning the light off (this will work because we pretend it is on
   // above)...
   //
-  lo_light( button_index );
+  highlight_off( button_index );
 
 }
 
-void hi_light( int button_index ) {
+void highlight_on( int button_index ) {
 
   // 2024-08-29 jj5 - if the light is already on just return...
   //
@@ -392,7 +392,7 @@ void hi_light( int button_index ) {
 
 }
 
-void lo_light( int button_index ) {
+void highlight_off( int button_index ) {
 
   // 2024-08-29 jj5 - if the light is already off just return...
   //
