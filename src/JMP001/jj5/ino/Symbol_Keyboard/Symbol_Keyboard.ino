@@ -336,6 +336,8 @@ void loop() {
     }
     else if ( age > MIN_LIGHT ) {
 
+      // 2024-08-30 jj5 - the button has been pressed for long enough for us to highlight the button, so do that now.
+
       highlight_on( button_index );
 
     }
