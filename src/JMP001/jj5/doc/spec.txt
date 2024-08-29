@@ -1,0 +1,97 @@
+
+# Font: 48 point Calibri
+
+0188: ¼ - frac14
+8531: ⅓ - frac13
+0189: ½ - frac12
+8532: ⅔ - frac23
+0190: ¾ - frac34
+
+0185: ¹ - Superscript_1
+0178: ² - Superscript_2
+0179: ³ - Superscript_3
+
+0169: © - Copyright
+0174: ® - Registered_Trade_Mark
+0153: ™ - Trade_Mark
+8481: ℡ - Telephone
+
+0176: ° - Degree
+8451: ℃ - Degree_Celsius
+8457: ℉ - Degree_Fahrenheit
+0167: § - Section
+0191: ¿ - Upside_Down_Question_Mark
+0133: … - Ellipsis
+0134: † - Dagger
+
+8469: ℕ - Set_Natural
+8484: ℤ - Set_Integer
+8474: ℚ - Set_Rational
+8477: ℝ - Set_Real
+8450: ℂ - Set_Complex
+
+0215: × - Multiplication
+0247: ÷ - Division
+0177: ± - Plus_Minus
+0172: ¬ - Not
+8960: ⌀ - Diameter
+
+0128: € - Euro_Sign
+0163: £ - Pound_Sign
+0165: ¥ - Yen_Sign
+8383: ₿ - Bitcoin_Sign
+0162: ¢ - Cent_Sign
+8369: ₱ - Peso_Sign
+
+0913: Α - Alpha_Uppercase
+0945: α - Alpha_Lowercase
+0914: Β - Beta_Uppercase
+0946: β - Beta_Lowercase
+0915: Γ - Gamma_Uppercase
+0947: γ - Gamma_Lowercase
+0916: Δ - Delta_Uppercase
+0948: δ - Delta_Lowercase
+0917: Ε - Epsilon_Uppercase
+0949: ε - Epsilon_Lowercase
+0918: Ζ - Zeta_Uppercase
+0950: ζ - Zeta_Lowercase
+0919: Η - Eta_Uppercase
+0951: η - Eta_Lowercase
+0920: Θ - Theta_Uppercase
+0952: θ - Theta_Lowercase
+0921: Ι - Iota_Uppercase
+0953: ι - Iota_Lowercase
+0922: Κ - Kappa_Uppercase
+0954: κ - Kappa_Lowercase
+0923: Λ - Lambda_Uppercase
+0955: λ - Lambda_Lowercase
+0924: Μ - Mu_Uppercase
+0181: µ - Mu_Lowercase
+0925: Ν - Nu_Uppercase
+0957: ν - Nu_Lowercase
+0926: Ξ - Xi_Uppercase
+0958: ξ - Xi_Lowercase
+0927: Ο - Omicron_Uppercase
+0959: ο - Omicron_Lowercase
+0928: Π - Pi_Uppercase
+0960: π - Pi_Lowercase
+0929: Ρ - Rho_Uppercase
+0961: ρ - Rho_Lowercase
+0931: Σ - Sigma_Uppercase
+0963: σ - Sigma_Lowercase
+0932: Τ - Tau_Uppercase
+0964: τ - Tau_Lowercase
+0933: Υ - Upsilon_Uppercase
+0965: υ - Upsilon_Lowercase
+0934: Φ - Phi_Uppercase
+0966: φ - Phi_Lowercase
+0935: Χ - Chi_Uppercase
+0967: χ - Chi_Lowercase
+0936: Ψ - Psi_Uppercase
+0968: ψ - Psi_Lowercase
+0937: Ω - Omega_Uppercase
+0969: ω - Omega_Lowercase
+
+# SEE: https://altcodeunicode.com/alt-codes-hebrew-alphabet-letters/
+
+1488: א - Alef
