@@ -1,8 +1,17 @@
 # JMP001: Symbol Keyboard
 
-There is more info about this project on the web over here:
+This project is from the
+[May 2024 issue](https://www.siliconchip.com.au/Issue/2024/May)
+of
+[Silicon Chip magazine](https://www.siliconchip.com.au/).
+
+There is more info about these projects on the web over here:
 
 - https://www.jj5.net/wiki/Mini_Projects
+
+The magazine article that introduced this project is on the web over here:
+
+- https://www.siliconchip.com.au/Issue/2024/May/Symbol+USB+Keyboard
 
 The hardware for this project is the Arduino Leonardo and the XC4630 touch screen:
 
