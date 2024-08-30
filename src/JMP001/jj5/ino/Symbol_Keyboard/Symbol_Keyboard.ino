@@ -29,7 +29,8 @@
 
 // 2024-08-29 jj5 - we highlight the button on the keyboard if the button is pressed at least MIN_LIGHT microseconds
 // and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds. This debouncing
-// helps us avoid false positive keypresses which the user did not intend.
+// helps us avoid false positive keypresses which the user did not intend. These settings worked pretty well for me during
+// my development and testing, but if you find better values please do let me know!
 //
 #define MIN_LIGHT 25000
 #define MIN_PRESS 75000
@@ -47,7 +48,8 @@
 #define ROWS 3
 #define COLUMNS 4
 
-// 2024-08-29 jj5 - button dimensions, including padding (the fonts are 64 pixels square, padding is 8 pixels)
+// 2024-08-29 jj5 - button dimensions, including padding (the fonts are 64 pixels square, padding is 8 pixels), so that's
+// 8 + 64 + 8 = 80 pixels square...
 //
 #define BUTTON_WIDTH 80
 #define BUTTON_HEIGHT 80
