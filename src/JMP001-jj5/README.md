@@ -31,7 +31,10 @@ The XC4430 library is included in the `ino/Symbol_Keyboard/XC4630d.c` file which
 
 There are scripts in the `bin` directory for doing various code-generation tasks. The main task is to generate C header
 files which include the bitmap font data for each symbol. To run all the code generation there is a main script:
-`bin/gen.sh`.
+`bin/gen.sh`. Just run `bin/gen.sh` and all the code-generation subtasks will be done. If you're interested in the
+details just read `bin/gen.sh` and find the subcommands specified in the `bin/libexec/` directory. Altogether these
+code-generation scripts run in BASH and PHP, so you will need those installed, along with standard tools such as `sed` and
+`awk` and `grep` etc.
 
 The specification for each button we might like to support is in a simple machine-readable file: `doc/spec.txt`.
 
