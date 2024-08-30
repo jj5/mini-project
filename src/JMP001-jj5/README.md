@@ -5,6 +5,14 @@ This project is from the
 of
 [Silicon Chip magazine](https://www.siliconchip.com.au/).
 
+This project uses an Arduino Leonardo with an attached touch screen to emulate a USB keyboard and send alt-key code
+combinations to a Microsoft Windows computer in order to facilitate the entry of twelve custom symbols, such as a
+copyright symbol © or an uppercase Green Omega Ω and so on.
+
+Note: this implementation is a fairly bare bones proof-of-concept implementation. A fuller implementation would include
+support for more than twelve symbols. Also it would be nice to figure out how support might be added for Linux or Apple
+operating systems.
+
 I covered this project on my YouTube channel
 [@InTheLabWithJayJay](https://www.youtube.com/@InTheLabWithJayJay)
 over here:
