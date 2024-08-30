@@ -54,7 +54,8 @@
 #define BUTTON_WIDTH 80
 #define BUTTON_HEIGHT 80
 
-// 2024-08-29 jj5 - total number of buttons...
+// 2024-08-29 jj5 - total number of buttons... we need to know this so that we can allocate storage to track the state of
+// each button...
 //
 #define BUTTON_COUNT ( ROWS * COLUMNS )
 
