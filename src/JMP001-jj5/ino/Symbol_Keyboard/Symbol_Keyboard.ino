@@ -64,7 +64,8 @@
 // 2024-08-30 jj5 - structs...
 //
 
-// 2024-08-31 jj5 - this struct represents a button on the touch screen, we use this to track the state of each button...
+// 2024-08-31 jj5 - this struct represents a button on the touch screen, we use this to specify and track the state of each
+// button...
 //
 struct button {
 
