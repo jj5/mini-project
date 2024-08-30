@@ -448,21 +448,33 @@ void send_alt_code( int alt_code ) {
 
   //Serial.println( alt_code );
 
+  // 2024-08-30 jj5 - press the left alt key...
+  //
   Keyboard.press( KEY_LEFT_ALT );
   delay( 1 );
 
+  // 2024-08-30 jj5 - send the first digit of the alt code...
+  //
   Keyboard.write( keypad_keys[ ( alt_code / 1000 ) % 10 ] );
   delay( 1 );
 
+  // 2024-08-30 jj5 - send the second digit of the alt code...
+  //
   Keyboard.write( keypad_keys[ ( alt_code / 100 ) % 10 ] );
   delay( 1 );
 
+  // 2024-08-30 jj5 - send the third digit of the alt code...
+  //
   Keyboard.write( keypad_keys[ ( alt_code / 10 ) % 10 ] );
   delay( 1 );
 
+  // 2024-08-30 jj5 - send the fourth digit of the alt code...
+  //
   Keyboard.write( keypad_keys[ ( alt_code / 1 ) % 10 ] );
   delay( 1 );
 
+  // 2024-08-30 jj5 - release the left alt key...
+  //
   Keyboard.releaseAll();
 
 }
