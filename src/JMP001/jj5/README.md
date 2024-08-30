@@ -13,8 +13,12 @@ The base directory for this project is the `jj5` directory which this `README.md
 directories are given relative to this base directory.
 
 The Arduino project for this code is in `ino/Symbol_Keyboard/Symbol_Keyboard.ino`. You can open this project in your
-Arduino IDE. You might need to add the Keyboard.h library which is provided by Arduino. The XC4430 library is included in
-the XC4630d.c file.
+Arduino IDE.
+
+You might need to add the `Keyboard.h` library which is provided by Arduino. You can add this library using the library
+management facilities in the Arduino IDE.
+
+The XC4430 library is included in the `XC4630d.c` file which is provided with this code.
 
 There are scripts in the `bin` directory for doing various code-generation tasks. The main task is to generate C header
 files which include the bitmap font data for each symbol. To run all the code generation there is a master script:
