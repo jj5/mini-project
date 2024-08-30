@@ -401,14 +401,14 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
 
   }
 
-  button[ button_index ].alt_code = alt_code;
-  button[ button_index ].bitmap   = bitmap;
-  button[ button_index ].x        = calc_x( button_index, bitmap );
-  button[ button_index ].y        = calc_y( button_index, bitmap );
-  button[ button_index ].width    = calc_w( bitmap );
-  button[ button_index ].height   = calc_h( bitmap );
-  button[ button_index ].pressed  = false;
-  button[ button_index ].waiting_since      = now;
+  button[ button_index ].alt_code       = alt_code;
+  button[ button_index ].bitmap         = bitmap;
+  button[ button_index ].x              = calc_x( button_index, bitmap );
+  button[ button_index ].y              = calc_y( button_index, bitmap );
+  button[ button_index ].width          = calc_w( bitmap );
+  button[ button_index ].height         = calc_h( bitmap );
+  button[ button_index ].pressed        = false;
+  button[ button_index ].waiting_since  = now;
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
