@@ -53,7 +53,7 @@ want. (You need to keep the line which includes the 'avr/pgmspace.h' header too.
 
 All the other files in the 'ino/Symbol_Keyboard/gen/' directory are font bitmaps. This is binary data that describes the
 symbol in a format the graphics library can use. As mentioned above these fonts are monochrome 64x64 pixel bitmaps with a
-one pixel border.
+one pixel border. These files are automatically generated using the bitmap files in the 'bmp' directory as a basis.
 
 The main code for this application is in 'ino/Symbol_Keyboard/Symbol_Keyboard.ino' which is described with its own comments.
 
