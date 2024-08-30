@@ -10,7 +10,7 @@ The hardware for this project is the Arduino Leonardo and the XC4630 touch scree
 - https://www.jaycar.com.au/duinotech-arduino-compatible-25-inch-colour-lcd-touch-screen-display/p/XC4630
 
 The base directory for this project is the `jj5` directory which this README.md file is in. All referenced files and
-directories are given in single-quotes relative to this base directory.
+directories are given relative to this base directory.
 
 The Arduino project for this code is in `ino/Symbol_Keyboard/Symbol_Keyboard.ino`. You can open this project in your
 Arduino IDE. You might need to add the Keyboard.h library which is provided by Arduino. The XC4430 library is included in
