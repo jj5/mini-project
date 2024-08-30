@@ -542,6 +542,8 @@ void log_int( const char* format_string, int n ) {
 
   if ( strlen( format_string ) > 100 ) {
 
+    // 2024-08-31 jj5 - we don't want to overflow our buffer so if our format string is too long we just warn and return...
+
     warn( "cowardly refusing to format string longer than 100 chars." );
 
     return;
