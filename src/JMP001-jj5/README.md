@@ -25,7 +25,7 @@ The Arduino project for this code is in `ino/Symbol_Keyboard/Symbol_Keyboard.ino
 Arduino IDE.
 
 You might need to add the `Keyboard.h` library which is provided by Arduino. You can add this library using the library
-management facilities in the Arduino IDE.
+management facilities in the Arduino IDE. Search for "Arduino Keyboard" and ye shall find.
 
 The XC4430 library is included in the `ino/Symbol_Keyboard/XC4630d.c` file which is provided with this code.
 
