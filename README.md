@@ -1,7 +1,11 @@
 # Silicon Chip and Jaycar Mini Projects
 
-This repo is for code for the Silicon Chip and Jaycar Mini Projects. These are projects developed by Silicon Chip and
-published in their magazine. The projects are sponsored by Jaycar Electronics.
+This repo is for code for the Silicon Chip and Jaycar Mini Projects. These are projects developed by
+[Silicon Chip](https://www.siliconchip.com.au/)
+and
+[published in their magazine](https://www.siliconchip.com.au/Series/417).
+The projects are sponsored by
+[Jaycar Electronics](https://www.jaycar.com.au/).
 
 Not all of the Mini Projects have code, but I will keep the code for the ones that do in this repo.
 
