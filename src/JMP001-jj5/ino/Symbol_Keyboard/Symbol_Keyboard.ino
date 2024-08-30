@@ -432,8 +432,8 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button[ button_index ].bitmap         = bitmap;
   button[ button_index ].x              = calc_x( button_index, bitmap );
   button[ button_index ].y              = calc_y( button_index, bitmap );
-  button[ button_index ].width          = calc_w( bitmap );
-  button[ button_index ].height         = calc_h( bitmap );
+  button[ button_index ].width          = calc_width( bitmap );
+  button[ button_index ].height         = calc_height( bitmap );
   button[ button_index ].pressed        = false;
   button[ button_index ].waiting_since  = micros();
 
@@ -527,13 +527,13 @@ int calc_y( int button_index, const unsigned char* button_bitmap ) {
 
 }
 
-int calc_w( const unsigned char* button_bitmap ) {
+int calc_width( const unsigned char* button_bitmap ) {
 
   return XC4630_imagewidth( button_bitmap );
 
 }
 
-int calc_h( const unsigned char* button_bitmap ) {
+int calc_height( const unsigned char* button_bitmap ) {
 
   return XC4630_imageheight( button_bitmap );
 
