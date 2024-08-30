@@ -7,7 +7,11 @@ This code is written in C++ for Arduino. You can use the Arduino IDE to compile 
 
 This code is for a simple symbol keyboard which allows you to type symbols which are not available on a standard keyboard
 into a computer running Microsoft Windows. The keyboard is displayed on a touch screen and the symbols are typed by pressing
-the corresponding button on the touch screen.
+the corresponding button on the touch screen. The code works by emulating a USB keyboard and sending the appropriate alt-key
+code sequence to the computer when a button is pressed on the touch screen.
+
+This code was originally written by Tim Blythman for Silicon Chip magazine. It was updated by John Elliot V to use a
+more reliable debouncing mechanism and to add support for more symbols.
 
 See the accompanying README.md file for more information.
 
