@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-// 2024-08-29 jj5 - this script generates the declare.c file that declares all the buttons. you can copy twelve declarations
+// 2024-08-29 jj5 - this script generates the declare.c file that declares all the buttons. You can copy twelve declarations
 // from this file into your setup() routine.
 
 require_once __DIR__ . '/inc/common.php';

@@ -1,5 +1,7 @@
 <?php
 
+// 2024-08-30 jj5 - this is the binary data that our bitmap files start with.
+//
 define(
   'BMP_HEADER',
   [
