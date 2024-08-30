@@ -5,7 +5,22 @@
 
 This code is written in C++ for Arduino. You can use the Arduino IDE to compile and upload this code to an Arduino board.
 
+This code is for a simple symbol keyboard which allows you to type symbols which are not available on a standard keyboard
+into a computer running Microsoft Windows. The keyboard is displayed on a touch screen and the symbols are typed by pressing
+the corresponding button on the touch screen.
+
 See the accompanying README.md file for more information.
+
+The code in this file is organised as follows:
+
+* includes
+* defines
+* structs
+* globals
+* event handlers
+* functions
+
+Have fun!
 
 */
 
