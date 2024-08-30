@@ -163,20 +163,12 @@ uint8_t keypad_keys[] = {
 //
 struct button button[ BUTTON_COUNT ];
 
-// 2024-08-29 jj5 - this is the current time (in microseconds)...
-//
-unsigned long now;
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2024-08-29 jj5 - event handlers...
 //
 
 void setup() {
-
-  // 2024-08-29 jj5 - initialise the timer...
-  //
-  now = micros();
 
   // 2024-08-29 jj5 - setup the screen...
   //
@@ -355,10 +347,6 @@ void setup() {
 
 void loop() {
 
-  // 2024-08-29 jj5 - update the timer...
-  //
-  now = micros();
-
   // 2024-08-29 jj5 - for each button...
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
@@ -369,7 +357,7 @@ void loop() {
 
     // 2024-08-30 jj5 - figure out how long this button has been pressed for (if it is pressed)...
     //
-    unsigned long duration = now - button[ button_index ].waiting_since;
+    unsigned long duration = micros() - button[ button_index ].waiting_since;
 
     if ( button[ button_index ].pressed && ! pressed ) {
 
@@ -402,7 +390,7 @@ void loop() {
 
       // 2024-08-30 jj5 - the button is not pressed so update its age and make sure it's not highlighted.
 
-      button[ button_index ].waiting_since = now;
+      button[ button_index ].waiting_since = micros();
 
       highlight_off( button_index );
 
@@ -447,7 +435,7 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button[ button_index ].width          = calc_w( bitmap );
   button[ button_index ].height         = calc_h( bitmap );
   button[ button_index ].pressed        = false;
-  button[ button_index ].waiting_since  = now;
+  button[ button_index ].waiting_since  = micros();
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
