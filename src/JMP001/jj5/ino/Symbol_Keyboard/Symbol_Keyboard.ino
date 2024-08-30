@@ -104,6 +104,9 @@ struct button {
 // 2024-08-29 jj5 - globals...
 //
 
+// 2024-08-30 jj5 - this array of key codes is used to send keypresses to the USB keyboard... the index of the key code
+// corresponds to the button on the keyboard... 0 is keypad key 0, 1 is keypad key 1, etc...
+//
 uint8_t keypad_keys[] = {
   KEY_KP_0,
   KEY_KP_1,
