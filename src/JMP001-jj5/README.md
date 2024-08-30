@@ -30,7 +30,7 @@ management facilities in the Arduino IDE. Search for "Arduino Keyboard" and ye s
 The XC4430 library is included in the `ino/Symbol_Keyboard/XC4630d.c` file which is provided with this code.
 
 There are scripts in the `bin` directory for doing various code-generation tasks. The main task is to generate C header
-files which include the bitmap font data for each symbol. To run all the code generation there is a master script:
+files which include the bitmap font data for each symbol. To run all the code generation there is a main script:
 `bin/gen.sh`.
 
 The specification for each button we might like to support is in a simple machine-readable file: `doc/spec.txt`.
