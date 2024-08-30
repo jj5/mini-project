@@ -18,7 +18,7 @@ Arduino IDE.
 You might need to add the `Keyboard.h` library which is provided by Arduino. You can add this library using the library
 management facilities in the Arduino IDE.
 
-The XC4430 library is included in the `XC4630d.c` file which is provided with this code.
+The XC4430 library is included in the `ino/Symbol_Keyboard/XC4630d.c` file which is provided with this code.
 
 There are scripts in the `bin` directory for doing various code-generation tasks. The main task is to generate C header
 files which include the bitmap font data for each symbol. To run all the code generation there is a master script:
@@ -46,14 +46,15 @@ appropriate symbol with an appropriate font. The font I have used for the symbol
 The symbol font bitmaps are in the `bmp` directory. The file name is 'u', followed by the four-digit alt-key code, followed
 by a friendly name for the symbol. If you need to add new fonts, put the details in the `doc/spec.txt` file (using the same
 format as the other specified symbols) then run `bin/gen.sh`. This will generate a bitmap file for you in the `bmp`
-directory from the `etc/template.bmp` file. You need to edit the bitmap file and then run `bin/gen.sh` again. This second
-pass of the code-generation script will write a C header file in the `ino/Symbol_Keyboard/gen/` directory based on the
-bitmap data given in the bitmap file. It will also update the `declare.c` and `header.h` files is the same directory.
+directory from the `etc/template.bmp` file. You need to edit the bitmap file so that it actually contains the font symbol
+that you want, and then run `bin/gen.sh` again. This second pass of the code-generation script will write a C header file
+in the `ino/Symbol_Keyboard/gen/` directory based on the bitmap data given in the bitmap file. It will also update the
+`declare.c` and `header.h` files is the same directory.
 
 The generated `declare.c` file shows you how buttons for each symbol can be declared. You can copy these examples into the
 setup() routine in your Arduino project. You need to declare exactly 12 buttons (no more, no less). Note that this
 `declare.c` file is just a helper for you, it won't actually work as-is and isn't meant to be used directly, it's just there
-so you can copy and paste an button declarations you would like to use.
+so you can copy and paste any button declarations you would like to use.
 
 The generated `header.h` file includes all of the generated font bitmaps. As a convenience you can just include this header
 to include all the symbols that are available in your program. However your program will only ever have call to use twelve
