@@ -95,7 +95,7 @@ struct button {
   // 2024-08-29 jj5 - this records the earliest time of a keydown event for this button, if a button gets old enough (far
   // back in time enough) we send the keypress, otherwise we wait...
   //
-  unsigned long age;
+  unsigned long waiting_since;
 
 };
 
@@ -301,6 +301,9 @@ void setup() {
   declare_button( button_index++, 1488, u1488_Alef );
   */
 
+  // 2024-08-30 jj5 - if the button index is not BUTTON_COUNT then we have a problem... we should initialise exactly
+  // BUTTON_COUNT buttons (twelve)...
+  //
   if ( button_index != BUTTON_COUNT ) {
 
     warn( "button_index != BUTTON_COUNT" );
@@ -321,16 +324,19 @@ void loop() {
   //
   for ( int button_index = 0; button_index < BUTTON_COUNT; button_index++ ) {
 
-    // 2024-08-30 jj5 - get the details for this button...
+    // 2024-08-30 jj5 - figure out if this button is currently pressed or not by measuring the touch on the touch screen...
     //
     bool pressed = is_pressed( button_index );
-    unsigned long age = now - button[ button_index ].age;
+
+    // 2024-08-30 jj5 - figure out how long this button has been pressed for (if it is pressed)...
+    //
+    unsigned long duration = now - button[ button_index ].waiting_since;
 
     if ( button[ button_index ].pressed && ! pressed ) {
 
       // 2024-08-29 jj5 - the button was pressed, but now it's not, so that's a keyup event
 
-      if ( age > MIN_PRESS ) {
+      if ( duration > MIN_PRESS ) {
 
         // 2024-08-29 jj5 - the button was down at least MIN_PRESS microseconds, so unhighlight the key and send the
         // alt-key combination, this keypress event is finished.
@@ -357,12 +363,12 @@ void loop() {
 
       // 2024-08-30 jj5 - the button is not pressed so update its age and make sure it's not highlighted.
 
-      button[ button_index ].age = now;
+      button[ button_index ].waiting_since = now;
 
       highlight_off( button_index );
 
     }
-    else if ( age > MIN_LIGHT ) {
+    else if ( duration > MIN_LIGHT ) {
 
       // 2024-08-30 jj5 - the button has been pressed for long enough for us to highlight the button, so do that now.
 
@@ -402,7 +408,7 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button[ button_index ].width    = calc_w( bitmap );
   button[ button_index ].height   = calc_h( bitmap );
   button[ button_index ].pressed  = false;
-  button[ button_index ].age      = now;
+  button[ button_index ].waiting_since      = now;
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
