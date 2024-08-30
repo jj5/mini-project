@@ -28,7 +28,8 @@
 //#define JJ5
 
 // 2024-08-29 jj5 - we highlight the button on the keyboard if the button is pressed at least MIN_LIGHT microseconds
-// and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds...
+// and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds. This debouncing
+// helps us avoid false positive keypresses which the user did not intend.
 //
 #define MIN_LIGHT 25000
 #define MIN_PRESS 75000
