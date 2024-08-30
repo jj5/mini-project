@@ -5,6 +5,12 @@ This project is from the
 of
 [Silicon Chip magazine](https://www.siliconchip.com.au/).
 
+I covered this project on my YouTube channel
+[@InTheLabWithJayJay](https://www.youtube.com/@InTheLabWithJayJay)
+over here:
+
+- [Symbol Keyboard | Mini Project JMP001 | Learning Electronics In The Lab With Jay Jay](https://www.youtube.com/watch?v=uHc-zOEWSzk)
+
 There is more info about these projects on the web over here:
 
 - https://www.jj5.net/wiki/Mini_Projects
