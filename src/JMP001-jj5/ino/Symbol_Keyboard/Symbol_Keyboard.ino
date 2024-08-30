@@ -65,7 +65,9 @@
 //
 
 // 2024-08-31 jj5 - this struct represents a button on the touch screen, we use this to specify and track the state of each
-// button...
+// button... note that much of our button data doesn't change (the alt code, the bitmap, the x and y coordinates, the width
+// and height) so we calculate that in the beginning during button declaration so that we don't have to keep regenerating
+// it each time it is needed. The other button data (pressed, light_on, waiting_since) is tracked and updated as necessary.
 //
 struct button {
 
