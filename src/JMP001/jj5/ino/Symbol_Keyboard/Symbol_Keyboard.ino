@@ -448,7 +448,7 @@ void send_alt_code( int alt_code ) {
 
   //Serial.println( alt_code );
 
-  // 2024-08-30 jj5 - press the left alt key...
+  // 2024-08-30 jj5 - press the left alt key. it will stay pressed while we send the four keypad codes which follow...
   //
   Keyboard.press( KEY_LEFT_ALT );
   delay( 1 );
