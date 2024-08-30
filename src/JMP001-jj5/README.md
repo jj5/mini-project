@@ -59,7 +59,8 @@ pixel border. If a symbol bitmap file doesn't already exist the template bitmap 
 directory for each supported symbol as defined in `doc/spec.txt`.
 
 After a bitmap file is created from a template you need to edit it in a graphics editor (such as Microsoft Paint) with an
-appropriate symbol with an appropriate font. The font I have used for the symbols I generated is 48-point Calibri.
+appropriate symbol with an appropriate font. The font I have used for the symbols I generated is 48-point Calibri. Use a
+black background and a white foreground.
 
 The symbol font bitmaps are in the `bmp` directory. The file name is 'u', followed by the four-digit alt-key code, followed
 by a friendly name for the symbol. If you need to add new fonts, put the details in the `doc/spec.txt` file (using the same
