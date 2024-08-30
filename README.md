@@ -1,6 +1,6 @@
 # Silicon Chip and Jaycar Mini Projects
 
-This repo is for code for the Silicon Chip and Jaycar Mini Projects. These are projects developed by
+This is a monorepo for code for the Silicon Chip and Jaycar Mini Projects. These are projects developed by
 [Silicon Chip](https://www.siliconchip.com.au/)
 and
 [published in their magazine](https://www.siliconchip.com.au/Series/417).
