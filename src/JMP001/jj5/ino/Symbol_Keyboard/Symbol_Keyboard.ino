@@ -92,8 +92,8 @@ struct button {
   //
   bool light_on;
 
-  // 2024-08-29 jj5 - this records the age of a keydown, if they get old enough (far back in time enough) we send the
-  // keypress, otherwise we wait...
+  // 2024-08-29 jj5 - this records the earliest time of a keydown event for this button, if a button gets old enough (far
+  // back in time enough) we send the keypress, otherwise we wait...
   //
   unsigned long age;
 
