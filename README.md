@@ -20,7 +20,7 @@ If you're looking for more information the project documentation is mostly here:
 
 - https://www.jj5.net/wiki/Mini_Projects
 
-I will put another README.md file in the `jj5` directory for each project with some notes about the changes I made.
+I will put another `README.md` file in the `jj5` directory for each project with some notes about the changes I made.
 
 Cheers,
 Jay Jay.
