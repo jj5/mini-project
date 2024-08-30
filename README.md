@@ -1,6 +1,7 @@
-# mini-project
+# Silicon Chip and Jaycar Mini Projects
 
-This repo is for code for the Silicon Chip and Jaycar Mini Projects.
+This repo is for code for the Silicon Chip and Jaycar Mini Projects. These are projects developed by Silicon Chip and
+published in their magazine. The projects are sponsored by Jaycar Electronics.
 
 Not all of the Mini Projects have code, but I will keep the code for the ones that do in this repo.
 
@@ -11,3 +12,6 @@ is for the code which I changed.
 If you're looking for more information the project documentation is mostly here: https://www.jj5.net/wiki/Mini_Projects
 
 I will put another README.md file in the 'jj5' directory for each project with some notes about the changes I made.
+
+Cheers,
+Jay Jay.

@@ -13,7 +13,8 @@ The base directory for this project is the 'jj5' directory which this README.md 
 directories are given in single-quotes relative to this base directory.
 
 The Arduino project for this code is in 'ino/Symbol_Keyboard/Symbol_Keyboard.ino'. You can open this project in your
-Arduino IDE.
+Arduino IDE. You might need to add the Keyboard.h library which is provided by Arduino. The XC4430 library is included in
+the XC4630d.c file.
 
 There are scripts in the 'bin' directory for doing various code-generation tasks. The main task is to generate C header
 files which include the bitmap font data for each symbol. To run all the code generation there is a master script:
@@ -26,6 +27,9 @@ sorted version of the 'doc/spec.txt' specification file.
 
 The 'bin/gen.sh' script runs all the necessary code-generation tasks for the project. If you change the 'doc/spec.txt' or
 any of the bitmaps in the 'bmp' directory you should re-run the 'bin/gen.sh' script to pickup any changes.
+
+Be aware that the 'bin/gen.sh' script will overwrite any files that it is responsible for maintaining. So you don't want to
+make manual changes to such files because those changes will be overwritten the next time code-generation is run.
 
 The 'bin/gen.sh' script processes the 'doc/spec.txt' specification to generate bitmaps for each symbol from the template
 bitmap which is in 'etc/template.bmp'. The template.bmp file is a 64 pixel by 64 pixel square monochrome bitmap with a one
@@ -43,7 +47,9 @@ pass of the code-generation script will write a C header file in the 'ino/Symbol
 update the 'declare.c' and 'header.h' files is the same directory.
 
 The generated 'declare.c' file shows you how buttons for each symbol can be declared. You can copy these examples into the
-setup() routine in your Arduino project. You need to declare exactly 12 buttons (no more, no less).
+setup() routine in your Arduino project. You need to declare exactly 12 buttons (no more, no less). Note that this
+'declare.c' file is just a helper for you, it won't actually work as-is and isn't meant to be used directly, it's just there
+so you can copy and paste an button declarations you would like to use.
 
 The generated 'header.h' file includes all of the generated font bitmaps. As a convenience you can just include this header
 to include all the symbols that are available in your program. However your program will only ever have call to use twelve
