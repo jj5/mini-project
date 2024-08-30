@@ -47,8 +47,8 @@ The symbol font bitmaps are in the `bmp` directory. The file name is 'u', follow
 by a friendly name for the symbol. If you need to add new fonts, put the details in the `doc/spec.txt` file (using the same
 format as the other specified symbols) then run `bin/gen.sh`. This will generate a bitmap file for you in the `bmp`
 directory from the `etc/template.bmp` file. You need to edit the bitmap file and then run `bin/gen.sh` again. This second
-pass of the code-generation script will write a C header file in the `ino/Symbol_Keyboard/gen/` directory. It will also
-update the `declare.c` and `header.h` files is the same directory.
+pass of the code-generation script will write a C header file in the `ino/Symbol_Keyboard/gen/` directory based on the
+bitmap data given in the bitmap file. It will also update the `declare.c` and `header.h` files is the same directory.
 
 The generated `declare.c` file shows you how buttons for each symbol can be declared. You can copy these examples into the
 setup() routine in your Arduino project. You need to declare exactly 12 buttons (no more, no less). Note that this
