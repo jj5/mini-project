@@ -104,7 +104,8 @@ struct button {
   bool light_on;
 
   // 2024-08-29 jj5 - this records the earliest time of a keydown event for this button, if a button gets old enough (far
-  // back in time enough) we send the keypress, otherwise we wait...
+  // back in time enough) we send the keypress, otherwise we wait. If a button *isn't* pressed we reset this time to the
+  // current time and we start waiting again when the button is pressed...
   //
   unsigned long waiting_since;
 
