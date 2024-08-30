@@ -68,7 +68,7 @@ format as the other specified symbols) then run `bin/gen.sh`. This will generate
 directory from the `etc/template.bmp` file. You need to edit the bitmap file so that it actually contains the font symbol
 that you want, and then run `bin/gen.sh` again. This second pass of the code-generation script will write a C header file
 in the `ino/Symbol_Keyboard/gen/` directory based on the bitmap data given in the bitmap file. It will also update the
-`declare.c` and `header.h` files is the same directory.
+`declare.c` and `header.h` files in the same directory.
 
 The generated `declare.c` file shows you how buttons for each symbol can be declared. You can copy these examples into the
 setup() routine in your Arduino project. You need to declare exactly 12 buttons (no more, no less). Note that this
