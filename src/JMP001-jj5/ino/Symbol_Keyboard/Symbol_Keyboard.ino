@@ -64,6 +64,8 @@
 // 2024-08-30 jj5 - structs...
 //
 
+// 2024-08-31 jj5 - this struct represents a button on the touch screen, we use this to track the state of each button...
+//
 struct button {
 
   // 2024-08-29 jj5 - this is the four-digit alt-key code for this button...
@@ -111,7 +113,9 @@ struct button {
 //
 
 // 2024-08-30 jj5 - this array of key codes is used to send keypresses to the USB keyboard... the index of the key code
-// corresponds to the button on the keyboard... 0 is keypad key 0, 1 is keypad key 1, etc...
+// corresponds to the button on the keyboard... 0 is keypad key 0, 1 is keypad key 1, etc... we rely on this property of
+// this array to send the correct keypresses when an alt-key code sequence is sent by the send_alt_code() function which
+// is defined below...
 //
 uint8_t keypad_keys[] = {
   KEY_KP_0,
