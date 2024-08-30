@@ -46,7 +46,7 @@
 #define ROWS 3
 #define COLUMNS 4
 
-// 2024-08-29 jj5 - button dimenions, including padding (the fonts are 64 pixels square, padding is 8 pixels)
+// 2024-08-29 jj5 - button dimensions, including padding (the fonts are 64 pixels square, padding is 8 pixels)
 //
 #define BUTTON_WIDTH 80
 #define BUTTON_HEIGHT 80
