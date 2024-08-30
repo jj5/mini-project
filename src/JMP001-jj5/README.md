@@ -36,10 +36,16 @@ details just read `bin/gen.sh` and find the subcommands specified in the `bin/li
 code-generation scripts run in BASH and PHP, so you will need those installed, along with standard tools such as `sed` and
 `awk` and `grep` etc.
 
-The specification for each button we might like to support is in a simple machine-readable file: `doc/spec.txt`.
+The specification for each button we might like to support is in a simple machine-readable file: `doc/spec.txt`. When
+updating the `doc/spec.txt` file it is advisable to type in the four-digit alt-key code, and then actually use that alt-key
+code to insert the appropriate symbol. This is to avoid any problems that might arise from having the wrong symbols
+associated with the wrong bitmap files. When it comes time to actually edit the symbol bitmap file it is also advisable
+to copy and paste the symbol into your graphics program from the specification file. Again, this is to minimize the
+possibility of error, but it is also convenient.
 
 The `doc/spec-sorted.txt` file is automatically generated from the `doc/spec.txt` file. It is, as the name suggests, a
-sorted version of the `doc/spec.txt` specification file.
+sorted version of the `doc/spec.txt` specification file. This was useful when creating the initial batch of bitmaps as those
+were sorted by file name in Windows Explorer as I edited each of them in Microsoft Paint.
 
 The `bin/gen.sh` script runs all the necessary code-generation tasks for the project. If you change the `doc/spec.txt` or
 any of the bitmaps in the `bmp` directory you should re-run the `bin/gen.sh` script to pickup any changes.
