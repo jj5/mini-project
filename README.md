@@ -7,6 +7,8 @@ and
 The projects are sponsored by
 [Jaycar Electronics](https://www.jaycar.com.au/).
 
+Big thanks to Tim Blythman for his work putting these projects together.
+
 Not all of the Mini Projects have code, but I will keep the code for the ones that do in this repo.
 
 In the `src` directory there is a subdirectory with the Mini Project codename, such as JMP001, and a suffix of either
