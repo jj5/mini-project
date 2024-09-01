@@ -368,6 +368,8 @@ void loop() {
     //
     unsigned long duration = micros() - button[ button_index ].waiting_since;
 
+    // 2024-09-01 jj5 - figure out how long it has been since we last sent a keypress for this button...
+    //
     unsigned long last_sent = micros() - button[ button_index ].last_sent;
 
     if ( button[ button_index ].pressed && ! pressed ) {
