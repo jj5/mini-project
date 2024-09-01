@@ -61,8 +61,9 @@ Have fun!
 // helps us avoid false positive keypresses which the user did not intend. These settings worked pretty well for me during
 // my development and testing, but if you find better values please do let me know!
 //
-#define MIN_LIGHT 25000
-#define MIN_PRESS 75000
+#define MIN_LIGHT   25000
+#define MIN_PRESS  100000
+#define MIN_AGAIN 2000000
 
 // 2024-08-29 jj5 - foreground colour...
 //
@@ -137,6 +138,10 @@ struct button {
   // current time and we start waiting again when the button is pressed...
   //
   unsigned long waiting_since;
+
+  // 2024-09-01 jj5 - this is the time this button was last pressed...
+  //
+  unsigned long last_sent;
 
 };
 
@@ -363,11 +368,20 @@ void loop() {
     //
     unsigned long duration = micros() - button[ button_index ].waiting_since;
 
+    unsigned long last_sent = micros() - button[ button_index ].last_sent;
+
     if ( button[ button_index ].pressed && ! pressed ) {
 
       // 2024-08-29 jj5 - the button was pressed, but now it's not, so that's a keyup event
 
-      if ( duration > MIN_PRESS ) {
+      if ( button[ button_index ].last_sent != 0 && last_sent < MIN_AGAIN ) {
+
+        // 2024-09-01 jj5 - this button press happened too soon after the previous press, so ignore it...
+
+        pressed = false;
+
+      }
+      else if ( duration > MIN_PRESS ) {
 
         // 2024-08-29 jj5 - the button was down at least MIN_PRESS microseconds, so unhighlight the key and send the
         // alt-key combination, this keypress event is finished.
@@ -375,6 +389,8 @@ void loop() {
         highlight_off( button_index );
 
         send_alt_code( button[ button_index ].alt_code );
+
+        button[ button_index ].last_sent = micros();
 
         log_int( "keyup sent for button '%d'.", button_index );
 
@@ -440,6 +456,7 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button[ button_index ].height         = calc_height( bitmap );
   button[ button_index ].pressed        = false;
   button[ button_index ].waiting_since  = micros();
+  button[ button_index ].last_sent      = 0;
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
