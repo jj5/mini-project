@@ -57,13 +57,14 @@ Have fun!
 //#define JJ5
 
 // 2024-08-29 jj5 - we highlight the button on the keyboard if the button is pressed at least MIN_LIGHT microseconds
-// and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds. This debouncing
-// helps us avoid false positive keypresses which the user did not intend. These settings worked pretty well for me during
-// my development and testing, but if you find better values please do let me know!
+// and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds. The MIN_AGAIN
+// setting is used to make sure we don't send the same button press again within a fixed period to avoid spurious and
+// accidental "double-clicks". This debouncing helps us avoid false positive keypresses which the user did not intend. These
+// settings worked pretty well for me during my development and testing, but if you find better values please do let me know!
 //
-#define MIN_LIGHT   25000
-#define MIN_PRESS  100000
-#define MIN_AGAIN 2000000
+#define MIN_LIGHT   25000 // 25 milliseconds
+#define MIN_PRESS  100000 // 100 milliseconds
+#define MIN_AGAIN 2000000 // 2 seconds
 
 // 2024-08-29 jj5 - foreground colour...
 //
@@ -97,7 +98,8 @@ Have fun!
 // 2024-08-31 jj5 - this struct represents a button on the touch screen, we use this to specify and track the state of each
 // button... note that much of our button data doesn't change (the alt code, the bitmap, the x and y coordinates, the width
 // and height) so we calculate that in the beginning during button declaration so that we don't have to keep regenerating
-// it each time it is needed. The other button data (pressed, light_on, waiting_since) is tracked and updated as necessary.
+// it each time it is needed. The other button data (pressed, light_on, waiting_since, last_sent) is tracked and updated as
+// necessary.
 //
 struct button {
 
@@ -139,7 +141,8 @@ struct button {
   //
   unsigned long waiting_since;
 
-  // 2024-09-01 jj5 - this is the time this button was last pressed...
+  // 2024-09-01 jj5 - this is the time this button was last pressed. We use this to make sure we don't accidentally send a
+  // key twice when an accidental double-click happens.
   //
   unsigned long last_sent;
 
