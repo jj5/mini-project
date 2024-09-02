@@ -10,7 +10,7 @@ into a computer running Microsoft Windows. The keyboard is displayed on a touch 
 the corresponding button on the touch screen. The code works by emulating a USB keyboard and sending the appropriate alt-key
 code sequence to the computer when a button is pressed on the touch screen.
 
-This code was originally written by Tim Blythman for Silicon Chip magazine. It was updated by John Elliot V to use a
+This code was originally written by Tim Blythman for Silicon Chip magazine. It was updated by John Elliot V (jj5) to use a
 more reliable debouncing mechanism and to add support for more symbols.
 
 See the accompanying README.md file for more information.
