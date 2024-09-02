@@ -376,7 +376,7 @@ void loop() {
 
       // 2024-08-29 jj5 - the button was pressed, but now it's not, so that's a keyup event
 
-      if ( button[ button_index ].last_sent != 0 && last_sent < MIN_AGAIN ) {
+      if ( last_sent < MIN_AGAIN ) {
 
         // 2024-09-01 jj5 - this button press happened too soon after the previous press, so ignore it...
 
@@ -458,7 +458,7 @@ void declare_button( int button_index, int alt_code, const unsigned char* bitmap
   button[ button_index ].height         = calc_height( bitmap );
   button[ button_index ].pressed        = false;
   button[ button_index ].waiting_since  = micros();
-  button[ button_index ].last_sent      = 0;
+  button[ button_index ].last_sent      = micros() - MIN_AGAIN;
 
   // 2024-08-29 jj5 - pretend the light is on...
   //
