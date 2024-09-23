@@ -54,7 +54,7 @@ Have fun!
 // 2024-08-29 jj5 - if JJ5 is defined the symbols are the ones Jay Jay uses, otherwise they are the ones from the
 // magazine.
 //
-//#define JJ5
+#define JJ5
 
 // 2024-08-29 jj5 - we highlight the button on the keyboard if the button is pressed at least MIN_LIGHT microseconds
 // and we actually send the keypress if the button is still pressed after at least MIN_PRESS microseconds. The MIN_AGAIN
@@ -65,6 +65,10 @@ Have fun!
 #define MIN_LIGHT   25000 // 25 milliseconds
 #define MIN_PRESS  100000 // 100 milliseconds
 #define MIN_AGAIN 2000000 // 2 seconds
+
+// 2024-09-24 jj5 - this is the delay (in milliseconds) between USB key-presses...
+//
+#define DELAY 75
 
 // 2024-08-29 jj5 - foreground colour...
 //
@@ -158,6 +162,22 @@ struct button {
 // this array to send the correct keypresses when an alt-key code sequence is sent by the send_alt_code() function which
 // is defined below...
 //
+#ifdef JJ5
+#define MODIFIER_KEY KEY_RIGHT_ALT
+uint8_t keypad_keys[] = {
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+};
+#else
+#define MODIFIER_KEY KEY_LEFT_ALT
 uint8_t keypad_keys[] = {
   KEY_KP_0,
   KEY_KP_1,
@@ -170,6 +190,7 @@ uint8_t keypad_keys[] = {
   KEY_KP_8,
   KEY_KP_9,
 };
+#endif
 
 // 2024-08-30 jj5 - this is our array of button data...
 //
@@ -510,30 +531,48 @@ void send_alt_code( int alt_code ) {
 
   //Serial.println( alt_code );
 
-  // 2024-08-30 jj5 - press the left alt key. it will stay pressed while we send the four keypad codes which follow...
+  // 2024-08-30 jj5 - press the modifier key. this is the left ALT key on Windows and potentially some other key on Linux. it will stay pressed while we send the four keypad codes which follow...
   //
-  Keyboard.press( KEY_LEFT_ALT );
-  delay( 1 );
+  Keyboard.press( MODIFIER_KEY );
+  delay( 75 );
 
+  uint8_t key[] = {
+    keypad_keys[ ( alt_code / 1000 ) % 10 ],
+    keypad_keys[ ( alt_code /  100 ) % 10 ],
+    keypad_keys[ ( alt_code /   10 ) % 10 ],
+    keypad_keys[ ( alt_code /    1 ) % 10 ],
+  };
+
+  for ( int i = 0; i < 4; i++ ) {
+
+    Keyboard.press( key[ i ] );
+    delay( 75 );
+    Keyboard.release( key[ i ] );
+    delay( 25 );
+
+  }
+
+  /*
   // 2024-08-30 jj5 - send the first digit of the alt code...
   //
   Keyboard.write( keypad_keys[ ( alt_code / 1000 ) % 10 ] );
-  delay( 1 );
+  delay( DELAY );
 
   // 2024-08-30 jj5 - send the second digit of the alt code...
   //
   Keyboard.write( keypad_keys[ ( alt_code / 100 ) % 10 ] );
-  delay( 1 );
+  delay( DELAY );
 
   // 2024-08-30 jj5 - send the third digit of the alt code...
   //
   Keyboard.write( keypad_keys[ ( alt_code / 10 ) % 10 ] );
-  delay( 1 );
+  delay( DELAY );
 
   // 2024-08-30 jj5 - send the fourth digit of the alt code...
   //
   Keyboard.write( keypad_keys[ ( alt_code / 1 ) % 10 ] );
-  delay( 1 );
+  delay( DELAY );
+  */
 
   // 2024-08-30 jj5 - release the left alt key...
   //

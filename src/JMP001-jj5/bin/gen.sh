@@ -33,6 +33,10 @@ main() {
   #
   bin/libexec/gen-declare.php;
 
+  # 2024-09-24 jj5 - this generates the '.XCompose' file which contains the compose key mappings for the symbols.
+  #
+  php bin/libexec/gen-compose.php > etc/XCompose;
+
 }
 
 main "$@";
