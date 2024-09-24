@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-// 2024-08-29 jj5 - this script copies the template bitmap file for each of the codes in the spec.txt file.
+// 2024-09-24 jj5 - this script generates a .XCompose file from the spec.txt file
 
 require_once __DIR__ . '/inc/common.php';
 

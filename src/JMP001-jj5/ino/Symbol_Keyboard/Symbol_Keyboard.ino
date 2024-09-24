@@ -51,8 +51,9 @@ Have fun!
 // 2024-08-29 jj5 - defines...
 //
 
-// 2024-08-29 jj5 - if JJ5 is defined the symbols are the ones Jay Jay uses, otherwise they are the ones from the
-// magazine.
+// 2024-08-29 jj5 - if JJ5 is defined the symbols are the ones Jay Jay uses and Linux compatibility is enabled, otherwise
+// the keypad keys are used for the symbols and Windows compatibility is enabled and the symbols are the ones that shipped
+// with the original magazine article.
 //
 #define JJ5
 
@@ -65,10 +66,6 @@ Have fun!
 #define MIN_LIGHT   25000 // 25 milliseconds
 #define MIN_PRESS  100000 // 100 milliseconds
 #define MIN_AGAIN 2000000 // 2 seconds
-
-// 2024-09-24 jj5 - this is the delay (in milliseconds) between USB key-presses...
-//
-#define DELAY 75
 
 // 2024-08-29 jj5 - foreground colour...
 //
@@ -531,7 +528,8 @@ void send_alt_code( int alt_code ) {
 
   //Serial.println( alt_code );
 
-  // 2024-08-30 jj5 - press the modifier key. this is the left ALT key on Windows and potentially some other key on Linux. it will stay pressed while we send the four keypad codes which follow...
+  // 2024-08-30 jj5 - press the modifier key. this is the left ALT key on Windows and potentially some other key
+  // on Linux (e.g. Right Alt). it will stay pressed while we send the four keypad codes which follow...
   //
   Keyboard.press( MODIFIER_KEY );
   delay( 75 );
@@ -552,29 +550,7 @@ void send_alt_code( int alt_code ) {
 
   }
 
-  /*
-  // 2024-08-30 jj5 - send the first digit of the alt code...
-  //
-  Keyboard.write( keypad_keys[ ( alt_code / 1000 ) % 10 ] );
-  delay( DELAY );
-
-  // 2024-08-30 jj5 - send the second digit of the alt code...
-  //
-  Keyboard.write( keypad_keys[ ( alt_code / 100 ) % 10 ] );
-  delay( DELAY );
-
-  // 2024-08-30 jj5 - send the third digit of the alt code...
-  //
-  Keyboard.write( keypad_keys[ ( alt_code / 10 ) % 10 ] );
-  delay( DELAY );
-
-  // 2024-08-30 jj5 - send the fourth digit of the alt code...
-  //
-  Keyboard.write( keypad_keys[ ( alt_code / 1 ) % 10 ] );
-  delay( DELAY );
-  */
-
-  // 2024-08-30 jj5 - release the left alt key...
+  // 2024-09-24 jj5 - release the modifier key...
   //
   Keyboard.releaseAll();
 
