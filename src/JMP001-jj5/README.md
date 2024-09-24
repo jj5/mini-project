@@ -10,8 +10,7 @@ combinations to a Microsoft Windows computer in order to facilitate the entry of
 copyright symbol © or an uppercase Greek Omega Ω and so on.
 
 Note: this implementation is a fairly bare bones proof-of-concept implementation. A fuller implementation would include
-support for more than twelve symbols. Also it would be nice to figure out how support might be added for Linux or Apple
-operating systems.
+support for more than twelve symbols. Also it would be nice to figure out how support might be added for Apple operating systems.
 
 I covered this project on my YouTube channel
 [@InTheLabWithJayJay](https://www.youtube.com/@InTheLabWithJayJay)
@@ -105,6 +104,12 @@ The main code for this application is in `ino/Symbol_Keyboard/Symbol_Keyboard.in
 You can pick any of the existing symbols to use in your project. Have a look in `doc/spec.txt` to see what is available.
 The symbols which I added were a few typical ones, some maths related ones, and the Greek alphabet. If the symbols you want aren't already available you will have to add them yourself. If you do create bitmaps for new symbols feel free to send them
 to me and I will include them with this project.
+
+2024-09-24 jj5 - we now have support for Linux systems. You need to set your Compose Key as Right Alt. To do that in KDE:
+
+System Settings -> Input Devices -> Keyboard -> Advanced -> Position of Compose key -> Right Alt
+
+Then you need to copy `etc/XCompose` into `~/.XCompose` and reboot.
 
 Good luck!
 
