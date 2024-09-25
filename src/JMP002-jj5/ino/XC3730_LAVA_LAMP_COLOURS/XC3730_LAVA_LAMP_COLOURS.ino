@@ -42,10 +42,13 @@ uint16_t tempColour[BLOB_T_MAX+1]={
 
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(COLUMNS, ROWS, 13,MATRIX_CFG);
 
+const int button_pin = 7;
+const int led_pin = 13;
+
 void setup() {
   char i;
   matrix.begin();
-  matrix.setBrightness(6);
+  matrix.setBrightness(2);
   matrix.fillScreen(0);
   matrix.show();
   for(i=0;i<BLOB_COUNT;i++){
@@ -53,10 +56,19 @@ void setup() {
     bloby[i]=i/COLUMNS+ROWS/2;
     blobt[i]=0;
   }
+  pinMode( button_pin, INPUT );
+  pinMode( led_pin, OUTPUT );
 }
 
 void loop() {
   char i,j;
+  int button_state = digitalRead( button_pin );
+  if ( button_state == HIGH ) {
+    digitalWrite( led_pin, HIGH );
+  }
+  else {
+    digitalWrite( led_pin, LOW );
+  }
   for(j=0;j<BLOB_COUNT;j++){
     updateBlob(j);
     matrix.fillScreen(BACK_COLOUR);
