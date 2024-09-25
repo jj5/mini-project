@@ -532,7 +532,7 @@ void send_alt_code( int alt_code ) {
   // on Linux (e.g. Right Alt). it will stay pressed while we send the four keypad codes which follow...
   //
   Keyboard.press( MODIFIER_KEY );
-  delay( 75 );
+  delay( 5 );
 
   uint8_t key[] = {
     keypad_keys[ ( alt_code / 1000 ) % 10 ],
@@ -544,9 +544,9 @@ void send_alt_code( int alt_code ) {
   for ( int i = 0; i < 4; i++ ) {
 
     Keyboard.press( key[ i ] );
-    delay( 75 );
+    delay( 5 );
     Keyboard.release( key[ i ] );
-    delay( 25 );
+    delay( 5 );
 
   }
 
