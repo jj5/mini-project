@@ -554,6 +554,8 @@ void send_alt_code( int alt_code ) {
   //
   Keyboard.releaseAll();
 
+  delay( 250 );
+
 }
 
 int calc_x( int button_index, const unsigned char* button_bitmap ) {
