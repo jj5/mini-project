@@ -91,6 +91,9 @@ Have fun!
 //
 #define BUTTON_COUNT ( ROWS * COLUMNS )
 
+// 2025-02-10 jj5 - delay in milliseconds after key event
+//
+#define DELAY 5
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 2024-08-30 jj5 - structs...
@@ -226,15 +229,16 @@ void setup() {
   //declare_button( button_index++,  169, u0169_Copyright );
   //declare_button( button_index++,  174, u0174_Registered_Trade_Mark );
   //declare_button( button_index++,  153, u0153_Trade_Mark );
+  //declare_button( button_index++,  928, u0928_Pi_Uppercase );
 
   declare_button( button_index++,  176, u0176_Degree );
   declare_button( button_index++,  177, u0177_Plus_Minus );
   declare_button( button_index++,  167, u0167_Section );
-  declare_button( button_index++,  955, u0955_Lambda_Lowercase );
+  declare_button( button_index++, 8734, u8734_Infinity );
 
   declare_button( button_index++,  916, u0916_Delta_Uppercase );
   declare_button( button_index++,  931, u0931_Sigma_Uppercase );
-  declare_button( button_index++,  928, u0928_Pi_Uppercase );
+  declare_button( button_index++,  955, u0955_Lambda_Lowercase );
   declare_button( button_index++,  937, u0937_Omega_Uppercase );
 
   declare_button( button_index++,  949, u0949_Epsilon_Lowercase );
@@ -532,7 +536,7 @@ void send_alt_code( int alt_code ) {
   // on Linux (e.g. Right Alt). it will stay pressed while we send the four keypad codes which follow...
   //
   Keyboard.press( MODIFIER_KEY );
-  delay( 5 );
+  delay( DELAY );
 
   uint8_t key[] = {
     keypad_keys[ ( alt_code / 1000 ) % 10 ],
@@ -544,9 +548,9 @@ void send_alt_code( int alt_code ) {
   for ( int i = 0; i < 4; i++ ) {
 
     Keyboard.press( key[ i ] );
-    delay( 5 );
+    delay( DELAY );
     Keyboard.release( key[ i ] );
-    delay( 5 );
+    delay( DELAY );
 
   }
 
@@ -554,7 +558,7 @@ void send_alt_code( int alt_code ) {
   //
   Keyboard.releaseAll();
 
-  delay( 250 );
+  delay( DELAY );
 
 }
 

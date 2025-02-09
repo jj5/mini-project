@@ -29,6 +29,7 @@
   declare_button( button_index++,  247, u0247_Division );
   declare_button( button_index++,  177, u0177_Plus_Minus );
   declare_button( button_index++,  172, u0172_Not );
+  declare_button( button_index++, 8734, u8734_Infinity );
   declare_button( button_index++, 8960, u8960_Diameter );
   declare_button( button_index++,  128, u0128_Euro_Sign );
   declare_button( button_index++,  163, u0163_Pound_Sign );

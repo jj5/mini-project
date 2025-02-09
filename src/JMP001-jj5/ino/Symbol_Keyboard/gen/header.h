@@ -86,4 +86,5 @@
 #include "u8484_Set_Integer.h"
 #include "u8531_frac13.h"
 #include "u8532_frac23.h"
+#include "u8734_Infinity.h"
 #include "u8960_Diameter.h"

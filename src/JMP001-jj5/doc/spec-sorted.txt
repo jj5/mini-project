@@ -81,6 +81,7 @@
 8484: ℤ - Set_Integer
 8531: ⅓ - frac13
 8532: ⅔ - frac23
+8734: ∞ - Infinity
 8960: ⌀ - Diameter
 # Font: 48 point Calibri
 # SEE: https://altcodeunicode.com/alt-codes-hebrew-alphabet-letters/

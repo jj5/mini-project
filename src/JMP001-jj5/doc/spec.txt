@@ -34,6 +34,7 @@
 0247: ÷ - Division
 0177: ± - Plus_Minus
 0172: ¬ - Not
+8734: ∞ - Infinity
 8960: ⌀ - Diameter
 
 0128: € - Euro_Sign
