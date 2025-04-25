@@ -7,7 +7,9 @@ require_once __DIR__ . '/inc/common.php';
 
 function main( $argv ) {
 
-  echo "# 2024-09-24 jj5 - copy this file to ~/.XCompose and configure your Compose Key as Right Alt\n";
+  echo "# 2024-09-24 jj5 - copy this file to ~/.XCompose and configure your Compose Key as Right Alt\n\n";
+  echo "# 2025-04-25 jj5 - import the default Compose file for your locale\n";
+  echo "include \"%L\"\n\n";
 
   chdir( __DIR__ . '/../../' );
 
